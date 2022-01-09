@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<manifest>
+  <control
+    constructor="MultiSwitch"
+    control-type="standard"
+    description-key="Control_Description_Key"
+    display-name-key="Control_Display_Name_Key"
+    namespace="AlbanianXrm"
+    preview-image="img\preview-image.png"
+    version="1.0.0"
+  >
+    <external-service-usage 
+      enabled="false" 
+    />
+    <property
+      name="selection"
+      display-name-key="Property_Display_Key"
+      description-key="Property_Desc_Key"
+      of-type="MultiSelectOptionSet"
+      usage="bound"
+      required="true"
+    />
+    <resources>
+      <code 
+        order="1" 
+        path="index.ts" 
+      />     
+      <resx 
+        path="strings/MultiSwitch.1033.resx" 
+        version="1.0.0" 
+      />
+    </resources>
+  </control>
+</manifest>
