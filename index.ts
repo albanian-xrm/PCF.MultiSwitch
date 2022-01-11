@@ -1,16 +1,16 @@
 import { createElement } from 'react';
-import { render } from 'react-dom';
+import { render, unmountComponentAtNode } from 'react-dom';
 
 import App from '@albanian-xrm/multi-switch/App';
-import { IHandler, notifier, disabledNotifier, SwitchValue } from '@albanian-xrm/multi-switch/notifier';
+import { IHandler, Notifier, SwitchValue } from '@albanian-xrm/multi-switch/notifier';
 import { IInputs, IOutputs } from '@albanian-xrm/multi-switch/generated/ManifestTypes';
 
 export class MultiSwitch implements ComponentFramework.StandardControl<IInputs, IOutputs> {
-  private _notifier = notifier;
-  private _disabledNotifier = disabledNotifier;
-  private _value: {[sender:string]: number[]} = {};
-  private _disabled: {[sender:string]: boolean} = {};
-  private _selection: number[];
+  private _notifier = new Notifier<number[]>();
+  private _disabledNotifier = new Notifier<boolean>();
+  private _value: number[];
+  private _disabled: boolean;
+  private _container: HTMLDivElement;
   /**
    * Empty constructor.
    */
@@ -30,23 +30,20 @@ export class MultiSwitch implements ComponentFramework.StandardControl<IInputs, 
     state: ComponentFramework.Dictionary,
     container: HTMLDivElement,
   ): void {
-    const sender = context.parameters.selection.attributes?.LogicalName || '';
-    
     const onValueChanged: IHandler<SwitchValue> = (updatedValue) => {
-      this._value[sender] = updatedValue || [];
-      this._selection = [...this._value[sender]];
+      this._value = updatedValue || [];
       notifyOutputChanged();
     };
-    this._disabled[sender] = context.mode.isControlDisabled;
-    const disabled = this._disabled[sender];
+    this._disabled = context.mode.isControlDisabled;
+    const disabled = this._disabled;
     const options = context.parameters.selection.attributes?.Options;
     const selectedOptions = context.parameters.selection.raw;
-    this._value[sender] = selectedOptions || [];
+    this._value = selectedOptions || [];
     const notifier = this._notifier;
     const disabledNotifier = this._disabledNotifier;
     const app = createElement(
       App,
-      { disabled, options, selectedOptions, onValueChanged, notifier, disabledNotifier, sender },
+      { disabled, options, selectedOptions, onValueChanged, notifier, disabledNotifier },
       null,
     );
     // Add control initialization code
@@ -59,19 +56,19 @@ export class MultiSwitch implements ComponentFramework.StandardControl<IInputs, 
    */
   public updateView(context: ComponentFramework.Context<IInputs>): void {
     const sender = context.parameters.selection.attributes?.LogicalName || '';
-    if (this._disabled[sender] != context.mode.isControlDisabled) {
-      this._disabled[sender] = context.mode.isControlDisabled;
-      disabledNotifier.notify(sender, this._disabled[sender]);
+    if (this._disabled != context.mode.isControlDisabled) {
+      this._disabled = context.mode.isControlDisabled;
+      this._disabledNotifier.notify(this._disabled);
     }
     // Add code to update control view
     const newValues = context.parameters.selection.raw || [];
     if (
-      newValues.length == this._value[sender].length &&
-      newValues.every((value) => this._value[sender].findIndex((oldValue) => oldValue === value) >= 0)
+      newValues.length == this._value.length &&
+      newValues.every((value) => this._value.findIndex((oldValue) => oldValue === value) >= 0)
     ) {
       return;
     }
-    this._notifier.notify(sender, context.parameters.selection.raw);
+    this._notifier.notify(newValues);
   }
 
   /**
@@ -79,7 +76,7 @@ export class MultiSwitch implements ComponentFramework.StandardControl<IInputs, 
    * @returns an object based on nomenclature defined in manifest, expecting object[s] for property marked as “bound” or “output”
    */
   public getOutputs(): IOutputs {
-    return { selection: [...this._selection] };
+    return { selection: [...this._value] };
   }
 
   /**
@@ -88,5 +85,6 @@ export class MultiSwitch implements ComponentFramework.StandardControl<IInputs, 
    */
   public destroy(): void {
     // Add code to cleanup control if necessary
+    unmountComponentAtNode(this._container);
   }
 }

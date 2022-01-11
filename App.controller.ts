@@ -7,20 +7,19 @@ const useAppController = ({
   notifier,
   disabledNotifier,
   onValueChanged,
-  sender
 }: IAppProps) => {
   const [selection, setSelection] = useState(selectedOptions || []);
   const [disabled, setDisabled] = useState(disabledProp);
   useEffect(() => {
-    const handlerId = notifier.subscribe(sender,(updatedValue) => {
+    const handlerId = notifier.subscribe((updatedValue) => {
       setSelection(updatedValue || []);
     });
-    const disabledHandlerId = disabledNotifier.subscribe(sender, (updatedValue) => {
+    const disabledHandlerId = disabledNotifier.subscribe((updatedValue) => {
       setDisabled(updatedValue);
     });
     return () => {
-      notifier.unsubscribe(sender, handlerId);
-      disabledNotifier.unsubscribe(sender, disabledHandlerId);
+      notifier.unsubscribe(handlerId);
+      disabledNotifier.unsubscribe(disabledHandlerId);
     };
   }, []);
   const onChecked = (checked: boolean, value: number) => {
