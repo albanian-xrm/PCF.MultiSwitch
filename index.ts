@@ -4,12 +4,15 @@ import { render, unmountComponentAtNode } from 'react-dom';
 import App from '@albanian-xrm/multi-switch/App';
 import { IHandler, Notifier, SwitchValue } from '@albanian-xrm/multi-switch/notifier';
 import { IInputs, IOutputs } from '@albanian-xrm/multi-switch/generated/ManifestTypes';
+import '@albanian-xrm/multi-switch/banner';
 
 export class MultiSwitch implements ComponentFramework.StandardControl<IInputs, IOutputs> {
   private _notifier = new Notifier<number[]>();
   private _disabledNotifier = new Notifier<boolean>();
+  private _visibleNotifier = new Notifier<boolean>();
   private _value: number[];
   private _disabled: boolean;
+  private _visible:boolean;
   private _container: HTMLDivElement;
   /**
    * Empty constructor.
@@ -34,16 +37,20 @@ export class MultiSwitch implements ComponentFramework.StandardControl<IInputs, 
       this._value = updatedValue || [];
       notifyOutputChanged();
     };
+    this._container = container;
     this._disabled = context.mode.isControlDisabled;
     const disabled = this._disabled;
+    const initialVisible = context.mode.isVisible;
+    this._visible = initialVisible;
     const options = context.parameters.selection.attributes?.Options;
     const selectedOptions = context.parameters.selection.raw;
     this._value = selectedOptions || [];
     const notifier = this._notifier;
     const disabledNotifier = this._disabledNotifier;
+    const visibleNotifier = this._visibleNotifier;
     const app = createElement(
       App,
-      { disabled, options, selectedOptions, onValueChanged, notifier, disabledNotifier },
+      { disabled, initialVisible, options, selectedOptions, onValueChanged, notifier, disabledNotifier, visibleNotifier },
       null,
     );
     // Add control initialization code
@@ -55,20 +62,9 @@ export class MultiSwitch implements ComponentFramework.StandardControl<IInputs, 
    * @param context The entire property bag available to control via Context Object; It contains values as set up by the customizer mapped to names defined in the manifest, as well as utility functions
    */
   public updateView(context: ComponentFramework.Context<IInputs>): void {
-    const sender = context.parameters.selection.attributes?.LogicalName || '';
-    if (this._disabled != context.mode.isControlDisabled) {
-      this._disabled = context.mode.isControlDisabled;
-      this._disabledNotifier.notify(this._disabled);
-    }
-    // Add code to update control view
-    const newValues = context.parameters.selection.raw || [];
-    if (
-      newValues.length == this._value.length &&
-      newValues.every((value) => this._value.findIndex((oldValue) => oldValue === value) >= 0)
-    ) {
-      return;
-    }
-    this._notifier.notify(newValues);
+    this.checkDisabled(context.mode.isControlDisabled);
+    this.checkVisible(context.mode.isVisible);
+    this.checkSelection(context.parameters.selection.raw || []);
   }
 
   /**
@@ -86,5 +82,32 @@ export class MultiSwitch implements ComponentFramework.StandardControl<IInputs, 
   public destroy(): void {
     // Add code to cleanup control if necessary
     unmountComponentAtNode(this._container);
+  }
+
+  private checkDisabled(disabled: boolean) {
+    if (this._disabled === disabled) {
+      return;
+    }
+    this._disabled = disabled;
+    this._disabledNotifier.notify(this._disabled);
+  }
+
+  private checkVisible(visible: boolean) {
+    if (this._visible === visible) {
+      return;
+    }
+    this._visible = visible;
+    this._visibleNotifier.notify(this._visible);
+  }
+
+  private checkSelection(values: number[]) {
+    if (
+      values.length == this._value.length &&
+      values.every((value) => this._value.findIndex((oldValue) => oldValue === value) >= 0)
+    ) {
+      return;
+    }
+    this._value = values;
+    this._notifier.notify(values);
   }
 }

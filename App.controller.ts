@@ -3,13 +3,16 @@ import { useState, useEffect } from 'react';
 
 const useAppController = ({
   disabled: disabledProp,
+  initialVisible,
   selectedOptions,
   notifier,
   disabledNotifier,
+  visibleNotifier,
   onValueChanged,
 }: IAppProps) => {
   const [selection, setSelection] = useState(selectedOptions || []);
   const [disabled, setDisabled] = useState(disabledProp);
+  const [visible, setVisible] = useState(initialVisible);
   useEffect(() => {
     const handlerId = notifier.subscribe((updatedValue) => {
       setSelection(updatedValue || []);
@@ -17,9 +20,13 @@ const useAppController = ({
     const disabledHandlerId = disabledNotifier.subscribe((updatedValue) => {
       setDisabled(updatedValue);
     });
+    const visibleHandlerId = visibleNotifier.subscribe((updatedValue)=>{
+      setVisible(updatedValue);
+    })
     return () => {
       notifier.unsubscribe(handlerId);
       disabledNotifier.unsubscribe(disabledHandlerId);
+      visibleNotifier.unsubscribe(visibleHandlerId);
     };
   }, []);
   const onChecked = (checked: boolean, value: number) => {
@@ -41,6 +48,7 @@ const useAppController = ({
     selection,
     onChecked,
     disabled,
+    visible
   };
 };
 

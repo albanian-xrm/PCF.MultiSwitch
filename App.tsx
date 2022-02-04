@@ -7,8 +7,8 @@ import { IAppProps } from '@albanian-xrm/multi-switch/App.types';
 import useAppController from '@albanian-xrm/multi-switch/App.controller';
 
 const App = (props: IAppProps) => {
-  const { disabled, selection, onChecked } = useAppController(props);
-  return (
+  const { disabled, selection, visible, onChecked } = useAppController(props);
+  return visible ? (
     <FormGroup>
       {props.options?.map((option) => (
         <FormControlLabel
@@ -24,6 +24,8 @@ const App = (props: IAppProps) => {
         />
       ))}
     </FormGroup>
+  ) : (
+    <></>
   );
 };
 
