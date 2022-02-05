@@ -12,7 +12,7 @@ export class MultiSwitch implements ComponentFramework.StandardControl<IInputs, 
   private _visibleNotifier = new Notifier<boolean>();
   private _value: number[];
   private _disabled: boolean;
-  private _visible:boolean;
+  private _visible: boolean;
   private _container: HTMLDivElement;
   /**
    * Empty constructor.
@@ -48,9 +48,20 @@ export class MultiSwitch implements ComponentFramework.StandardControl<IInputs, 
     const notifier = this._notifier;
     const disabledNotifier = this._disabledNotifier;
     const visibleNotifier = this._visibleNotifier;
+    const checkboxes = context.parameters.controlType.raw ==="1";
     const app = createElement(
       App,
-      { disabled, initialVisible, options, selectedOptions, onValueChanged, notifier, disabledNotifier, visibleNotifier },
+      {
+        checkboxes,
+        disabled,
+        initialVisible,
+        options,
+        selectedOptions,
+        onValueChanged,
+        notifier,
+        disabledNotifier,
+        visibleNotifier,
+      },
       null,
     );
     // Add control initialization code

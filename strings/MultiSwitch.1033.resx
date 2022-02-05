@@ -70,4 +70,16 @@
 <data name="Property_Desc_Key" xml:space="preserve">
     <value>The Multiple Options Field</value>
 </data>
+<data name="ControlType_Display_Key" xml:space="preserve">
+    <value>Control Type</value>
+</data>
+<data name="ControlType_Desc_Key" xml:space="preserve">
+    <value>Render Checkboxes or Switches</value>
+</data>
+<data name="Checkboxes" xml:space="preserve">
+    <value>Checkboxes</value>
+</data>
+<data name="Switches" xml:space="preserve">
+    <value>Switches</value>
+</data>
 </root>
