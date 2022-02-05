@@ -1,38 +1,41 @@
 import React from 'react';
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Switch from '@mui/material/Switch';
-import Checkbox from '@mui/material/Checkbox';
+import { Toggle } from '@fluentui/react/lib/components/Toggle/Toggle';
+import { Checkbox } from '@fluentui/react/lib/components/Checkbox/Checkbox';
+import { Stack } from '@fluentui/react/lib/components/Stack/Stack';
+import { initializeIcons } from '@fluentui/font-icons-mdl2';
 
 import { IAppProps } from '@albanian-xrm/multi-switch/App.types';
 import useAppController from '@albanian-xrm/multi-switch/App.controller';
 
+initializeIcons(undefined, { disableWarnings: true });
+const stackTokens = { childrenGap: 10 };
+
 const App = (props: IAppProps) => {
   const { disabled, selection, visible, onChecked } = useAppController(props);
   return visible ? (
-    <FormGroup>
-      {props.options?.map((option) => (
-        <FormControlLabel
-          key={option.Value}
-          control={
-            props.checkboxes === true ? (
-              <Checkbox
-                disabled={disabled}
-                onChange={(event, checked) => onChecked(checked, option.Value)}
-                checked={selection.findIndex((value) => value === option.Value) >= 0}
-              />
-            ) : (
-              <Switch
-                disabled={disabled}
-                onChange={(event, checked) => onChecked(checked, option.Value)}
-                checked={selection.findIndex((value) => value === option.Value) >= 0}
-              />
-            )
-          }
-          label={option.Label}
-        />
-      ))}
-    </FormGroup>
+    <Stack tokens={props.checkboxes ? stackTokens : undefined}>
+      {props.options?.map((option) =>
+        props.checkboxes === true ? (
+          <Checkbox
+            key={option.Value}
+            label={option.Label}
+            disabled={disabled}
+            checked={selection.findIndex((value) => value === option.Value) >= 0}
+            onChange={(event, checked) => onChecked(checked || false, option.Value)}
+          />
+        ) : (
+          <Toggle
+            key={option.Value}
+            label={option.Label}
+            disabled={disabled}
+            checked={selection.findIndex((value) => value === option.Value) >= 0}
+            onChange={(event, checked) => onChecked(checked || false, option.Value)}
+            styles={{ container: { marginBottom: 0 } }}
+            inlineLabel
+          />
+        ),
+      )}
+    </Stack>
   ) : (
     <></>
   );
