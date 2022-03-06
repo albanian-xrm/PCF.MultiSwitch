@@ -4,7 +4,6 @@ import { render, unmountComponentAtNode } from 'react-dom';
 import App from '@albanian-xrm/multi-switch/App';
 import { IHandler, Notifier, SwitchValue } from '@albanian-xrm/multi-switch/notifier';
 import { IInputs, IOutputs } from '@albanian-xrm/multi-switch/generated/ManifestTypes';
-import '@albanian-xrm/multi-switch/banner';
 
 export class MultiSwitch implements ComponentFramework.StandardControl<IInputs, IOutputs> {
   private _notifier = new Notifier<number[]>();
