@@ -2,18 +2,18 @@ import { createElement } from 'react';
 import { render, unmountComponentAtNode } from 'react-dom';
 
 import App from '@albanian-xrm/multi-switch/App';
-import { IHandler, Notifier, SwitchValue } from '@albanian-xrm/multi-switch/notifier';
 import { IInputs, IOutputs } from '@albanian-xrm/multi-switch/generated/ManifestTypes';
-import '@albanian-xrm/multi-switch/banner';
+import { CheckedHandler } from '@albanian-xrm/multi-switch/App.types';
 
 export class MultiSwitch implements ComponentFramework.StandardControl<IInputs, IOutputs> {
-  private _notifier = new Notifier<number[]>();
-  private _disabledNotifier = new Notifier<boolean>();
-  private _visibleNotifier = new Notifier<boolean>();
-  private _value: number[];
-  private _disabled: boolean;
-  private _visible: boolean;
-  private _container: HTMLDivElement;
+  private checkboxes: boolean;
+  private disabled: boolean;
+  private notifyOutputChanged: () => void;
+  private onChecked: CheckedHandler;
+  private value: number[];
+  private visible: boolean;
+
+  private container: HTMLDivElement;
   /**
    * Empty constructor.
    */
@@ -33,39 +33,43 @@ export class MultiSwitch implements ComponentFramework.StandardControl<IInputs, 
     state: ComponentFramework.Dictionary,
     container: HTMLDivElement,
   ): void {
-    const onValueChanged: IHandler<SwitchValue> = (updatedValue) => {
-      this._value = updatedValue || [];
-      notifyOutputChanged();
+    this.notifyOutputChanged = notifyOutputChanged;
+    this.container = container;
+    this.onChecked = (checked, value) => {
+      if (checked) {
+        this.value = [value, ...this.value.filter((oldValue) => oldValue !== value)];
+      } else {
+        this.value = this.value.filter((oldValue) => oldValue !== value);
+      }
+      this.notifyOutputChanged();
     };
-    this._container = container;
-    this._disabled = context.mode.isControlDisabled;
-    const disabled = this._disabled;
-    const initialVisible = context.mode.isVisible;
-    this._visible = initialVisible;
-    const options = context.parameters.selection.attributes?.Options;
-    const selectedOptions = context.parameters.selection.raw;
-    this._value = selectedOptions || [];
-    const notifier = this._notifier;
-    const disabledNotifier = this._disabledNotifier;
-    const visibleNotifier = this._visibleNotifier;
-    const checkboxes = context.parameters.controlType.raw ==="1";
+
+    this.mapContextAndRender(context);
+  }
+
+  private mapContextAndRender(context: ComponentFramework.Context<IInputs>) {
+    this.disabled = context.mode.isControlDisabled;
+    this.visible = context.mode.isVisible;
+    this.value = context.parameters.selection.raw || [];
+    this.checkboxes = context.parameters.controlType.raw === '1';
+    this.render(context.parameters.selection.attributes?.Options || []);
+  }
+
+  private render(options: ComponentFramework.PropertyHelper.OptionMetadata[]) {
     const app = createElement(
       App,
       {
-        checkboxes,
-        disabled,
-        initialVisible,
+        checkboxes: this.checkboxes,
+        disabled: this.disabled,
+        visible: this.visible,
         options,
-        selectedOptions,
-        onValueChanged,
-        notifier,
-        disabledNotifier,
-        visibleNotifier,
+        selectedOptions: this.value,
+        onChecked: this.onChecked,
       },
       null,
     );
     // Add control initialization code
-    render(app, container);
+    render(app, this.container);
   }
 
   /**
@@ -73,9 +77,7 @@ export class MultiSwitch implements ComponentFramework.StandardControl<IInputs, 
    * @param context The entire property bag available to control via Context Object; It contains values as set up by the customizer mapped to names defined in the manifest, as well as utility functions
    */
   public updateView(context: ComponentFramework.Context<IInputs>): void {
-    this.checkDisabled(context.mode.isControlDisabled);
-    this.checkVisible(context.mode.isVisible);
-    this.checkSelection(context.parameters.selection.raw || []);
+    this.mapContextAndRender(context);
   }
 
   /**
@@ -83,7 +85,7 @@ export class MultiSwitch implements ComponentFramework.StandardControl<IInputs, 
    * @returns an object based on nomenclature defined in manifest, expecting object[s] for property marked as “bound” or “output”
    */
   public getOutputs(): IOutputs {
-    return { selection: [...this._value] };
+    return { selection: [...this.value] };
   }
 
   /**
@@ -91,34 +93,6 @@ export class MultiSwitch implements ComponentFramework.StandardControl<IInputs, 
    * i.e. cancelling any pending remote calls, removing listeners, etc.
    */
   public destroy(): void {
-    // Add code to cleanup control if necessary
-    unmountComponentAtNode(this._container);
-  }
-
-  private checkDisabled(disabled: boolean) {
-    if (this._disabled === disabled) {
-      return;
-    }
-    this._disabled = disabled;
-    this._disabledNotifier.notify(this._disabled);
-  }
-
-  private checkVisible(visible: boolean) {
-    if (this._visible === visible) {
-      return;
-    }
-    this._visible = visible;
-    this._visibleNotifier.notify(this._visible);
-  }
-
-  private checkSelection(values: number[]) {
-    if (
-      values.length == this._value.length &&
-      values.every((value) => this._value.findIndex((oldValue) => oldValue === value) >= 0)
-    ) {
-      return;
-    }
-    this._value = values;
-    this._notifier.notify(values);
+    unmountComponentAtNode(this.container);
   }
 }
