@@ -1,5 +1,5 @@
-import { createElement } from 'react';
-import { render, unmountComponentAtNode } from 'react-dom';
+import React from 'react';
+import ReactDOM from 'react-dom';
 
 import App from '@albanian-xrm/multi-switch/App';
 import { IInputs, IOutputs } from '@albanian-xrm/multi-switch/generated/ManifestTypes';
@@ -56,7 +56,7 @@ export class MultiSwitch implements ComponentFramework.StandardControl<IInputs, 
   }
 
   private render(options: ComponentFramework.PropertyHelper.OptionMetadata[]) {
-    const app = createElement(
+    const app = React.createElement(
       App,
       {
         checkboxes: this.checkboxes,
@@ -69,7 +69,7 @@ export class MultiSwitch implements ComponentFramework.StandardControl<IInputs, 
       null,
     );
     // Add control initialization code
-    render(app, this.container);
+    ReactDOM.render(app, this.container);
   }
 
   /**
@@ -93,6 +93,6 @@ export class MultiSwitch implements ComponentFramework.StandardControl<IInputs, 
    * i.e. cancelling any pending remote calls, removing listeners, etc.
    */
   public destroy(): void {
-    unmountComponentAtNode(this.container);
+    ReactDOM.unmountComponentAtNode(this.container);
   }
 }

@@ -7,7 +7,7 @@
     display-name-key="Control_Display_Name_Key"
     namespace="AlbanianXrm"
     preview-image="img\preview-image.png"
-    version="1.0.4"
+    version="1.0.6"
   >
     <external-service-usage enabled="false" />
     <property
@@ -38,6 +38,8 @@
     </property>
     <resources>
       <code order="1" path="index.ts" />     
+      <platform-library name="React" version="16.8.6" />
+      <platform-library name="Fluent" version="8.29.0" />
       <resx path="strings/MultiSwitch.1033.resx" version="1.0.1" />
     </resources>
   </control>
