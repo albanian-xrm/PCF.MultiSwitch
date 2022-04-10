@@ -1,8 +1,5 @@
 import React from 'react';
-import { Toggle } from '@fluentui/react/lib/components/Toggle/Toggle';
-import { Checkbox } from '@fluentui/react/lib/components/Checkbox/Checkbox';
-import { Stack } from '@fluentui/react/lib/components/Stack/Stack';
-import { initializeIcons } from '@fluentui/font-icons-mdl2';
+import { Toggle, Checkbox, Stack , initializeIcons } from '@fluentui/react';
 
 import { IAppProps } from '@albanian-xrm/multi-switch/App.types';
 

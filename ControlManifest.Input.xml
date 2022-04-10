@@ -1,43 +1,16 @@
-﻿<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <manifest>
-  <control
-    constructor="MultiSwitch"
-    control-type="standard"
-    description-key="Control_Description_Key"
-    display-name-key="Control_Display_Name_Key"
-    namespace="AlbanianXrm"
-    preview-image="img\preview-image.png"
-    version="1.0.4"
-  >
+  <control constructor="MultiSwitch" control-type="virtual" description-key="Control_Description_Key" display-name-key="Control_Display_Name_Key" namespace="AlbanianXrm" preview-image="img\preview-image.png" version="1.0.5">
     <external-service-usage enabled="false" />
-    <property
-      name="selection"
-      display-name-key="Property_Display_Key"
-      description-key="Property_Desc_Key"
-      of-type="MultiSelectOptionSet"
-      usage="bound"
-      required="true"
-    />
-    <property
-      name="controlType"
-      display-name-key="ControlType_Display_Key"
-      description-key="ControlType_Desc_Key"
-      of-type="Enum"
-      usage="input"
-      default-value="0"
-      required="false"
-    >    
-      <value 
-        name="Swtiches" 
-        display-name-key="Switches"
-      >0</value>
-      <value 
-        name="Checkboxes" 
-        display-name-key="Checkboxes"
-      >1</value>
+    <property name="selection" display-name-key="Property_Display_Key" description-key="Property_Desc_Key" of-type="MultiSelectOptionSet" usage="bound" required="true" />
+    <property name="controlType" display-name-key="ControlType_Display_Key" description-key="ControlType_Desc_Key" of-type="Enum" usage="input" default-value="0" required="false">
+      <value name="Swtiches" display-name-key="Switches">0</value>
+      <value name="Checkboxes" display-name-key="Checkboxes">1</value>
     </property>
     <resources>
-      <code order="1" path="index.ts" />     
+      <code order="1" path="index.ts" />
+      <platform-library name="React" version="16.8.6" />
+      <platform-library name="Fluent" version="8.29.0" />
       <resx path="strings/MultiSwitch.1033.resx" version="1.0.1" />
     </resources>
   </control>

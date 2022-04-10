@@ -1,4 +1,5 @@
-export type CheckedHandler = (checked: boolean, value: number) => void
+export type CheckedHandler = (checked: boolean, value: number) => void;
+
 export interface IAppProps {
     checkboxes?: boolean;
     disabled?: boolean;
