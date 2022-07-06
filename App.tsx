@@ -4,11 +4,11 @@ import { Toggle, Checkbox, Stack , initializeIcons } from '@fluentui/react';
 import { IAppProps } from '@albanian-xrm/multi-switch/App.types';
 
 initializeIcons(undefined, { disableWarnings: true });
-const stackTokens = { childrenGap: 10 };
+const stackTokens = { childrenGap: '10px 10px'};
 
-const App = ({checkboxes, disabled, options, selectedOptions, visible, onChecked}: IAppProps) => {
+const App = ({checkboxes, disabled, horizontal, options, selectedOptions, visible, onChecked}: IAppProps) => {
   return visible ? (
-    <Stack tokens={checkboxes ? stackTokens : undefined}>
+    <Stack tokens={checkboxes || horizontal ? stackTokens : undefined} horizontal={horizontal} >
       {options?.map((option) =>
         checkboxes === true ? (
           <Checkbox

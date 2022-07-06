@@ -7,6 +7,7 @@ import { CheckedHandler } from '@albanian-xrm/multi-switch/App.types';
 export class MultiSwitch implements ComponentFramework.ReactControl<IInputs, IOutputs> {
   private checkboxes: boolean;
   private disabled: boolean;
+  private horizontal: boolean;
   private notifyOutputChanged: () => void;
   private onChecked: CheckedHandler;
   private value: number[];
@@ -45,6 +46,7 @@ export class MultiSwitch implements ComponentFramework.ReactControl<IInputs, IOu
     this.visible = context.mode.isVisible;
     this.value = context.parameters.selection.raw || [];
     this.checkboxes = context.parameters.controlType.raw === '1';
+    this.horizontal = context.parameters.orientation.raw === '1';
   }
 
   /**
@@ -59,6 +61,7 @@ export class MultiSwitch implements ComponentFramework.ReactControl<IInputs, IOu
         checkboxes: this.checkboxes,
         disabled: this.disabled,
         visible: this.visible,
+        horizontal: this.horizontal,
         options: context.parameters.selection.attributes?.Options || [],
         selectedOptions: this.value,
         onChecked: this.onChecked,

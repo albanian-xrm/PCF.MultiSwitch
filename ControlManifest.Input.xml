@@ -7,6 +7,10 @@
       <value name="Swtiches" display-name-key="Switches">0</value>
       <value name="Checkboxes" display-name-key="Checkboxes">1</value>
     </property>
+    <property name="orientation" display-name-key="Orientation_Display_Key" description-key="Orientation_Desc_Key" of-type="Enum" usage="input" default-value="0" required="false">
+      <value name="Horizontal" display-name-key="Horizontal">1</value>
+      <value name="Vertical" display-name-key="Vertical">0</value>
+    </property>  
     <resources>
       <code order="1" path="index.ts" />
       <platform-library name="React" version="16.8.6" />

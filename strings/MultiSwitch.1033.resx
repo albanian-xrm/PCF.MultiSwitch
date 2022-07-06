@@ -82,4 +82,16 @@
 <data name="Switches" xml:space="preserve">
     <value>Switches</value>
 </data>
+<data name="Orientation_Display_Key" xml:space="preserve">
+    <value>Orientation</value>
+</data>
+<data name="Orientation_Desc_Key" xml:space="preserve">
+    <value>Arrange options Horizontally or Vertically</value>
+</data>
+<data name="Horizontal" xml:space="preserve">
+    <value>Horizontal</value>
+</data>
+<data name="Vertical" xml:space="preserve">
+    <value>Vertical</value>
+</data>
 </root>
