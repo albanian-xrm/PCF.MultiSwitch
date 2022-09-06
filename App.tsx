@@ -5,15 +5,29 @@ import { Stack } from '@fluentui/react/lib/components/Stack/Stack';
 import { initializeIcons } from '@fluentui/font-icons-mdl2';
 
 import { IAppProps } from '@albanian-xrm/multi-switch/App.types';
+import { IStackStyles } from '@fluentui/react';
+
+import './app.css';
 
 initializeIcons(undefined, { disableWarnings: true });
 const stackTokens = { childrenGap: 10 };
 
 const App = ({checkboxes, disabled, options, selectedOptions, visible, onChecked}: IAppProps) => {
+  const nonShrinkingStackItemStyles: IStackStyles = {
+    root: {
+      display: 'flex',
+      height: 100,
+      justifyContent: 'center',
+      overflowY:'auto', 
+      paddingTop: 15,
+    },
+  };
   return visible ? (
-    <Stack tokens={checkboxes ? stackTokens : undefined}>
-      {options?.map((option) =>
+    <Stack className='tjola-stack' tokens={checkboxes ? stackTokens : undefined} styles={nonShrinkingStackItemStyles} horizontal={false}>
+      
+      {options?.map((option) => 
         checkboxes === true ? (
+        
           <Checkbox
             key={option.Value}
             label={option.Label}
@@ -33,6 +47,7 @@ const App = ({checkboxes, disabled, options, selectedOptions, visible, onChecked
           />
         ),
       )}
+   
     </Stack>
   ) : (
     <></>

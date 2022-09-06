@@ -1,0 +1,34 @@
+/* Firefox */
+.tjola-stack {
+    scrollbar-width: thin; /* none | auto  */
+    scrollbar-color: #dbdbdb transparent;
+  }
+  
+  /* The first applies to the thumb of the scrollbar, the second to the track. */
+  /* Firefox */
+  
+  /* Chrome, Edge, Safari */
+  .tjola-stack::-webkit-scrollbar {
+    width: 8px; /* vertical scrollbar */
+    height: 8px; /* horizontal scrollbar */
+  }
+  
+  .tjola-stack::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  .tjola-stack::-webkit-scrollbar-thumb {
+    background: #dbdbdb;
+    border-radius: 14px;
+    border: calc(14px / 4) solid #ccc;
+  }
+  
+  .tjola-stack::-webkit-scrollbar-thumb:hover {
+    background: #a3a3a3;
+  }
+  /* Chrome, Edge, Safari */
+  
+  .tjola-stack {
+    scroll-behavior: smooth;
+    justify-content: space-around;
+  }
