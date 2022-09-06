@@ -7,7 +7,7 @@
     display-name-key="Control_Display_Name_Key"
     namespace="AlbanianXrm"
     preview-image="img\preview-image.png"
-    version="1.0.4"
+    version="1.0.5"
   >
     <external-service-usage enabled="false" />
     <property
@@ -17,6 +17,14 @@
       of-type="MultiSelectOptionSet"
       usage="bound"
       required="true"
+    />
+        <property
+      name="height"
+      display-name-key="Height_Display_Key"
+      description-key="Height_Desc_Key"
+      of-type="Whole.None"
+      usage="input"
+      required="false"
     />
     <property
       name="controlType"
@@ -39,6 +47,7 @@
     <resources>
       <code order="1" path="index.ts" />     
       <resx path="strings/MultiSwitch.1033.resx" version="1.0.1" />
+      <css path="app.css" />
     </resources>
   </control>
 </manifest>

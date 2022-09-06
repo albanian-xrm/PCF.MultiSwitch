@@ -12,6 +12,7 @@ export class MultiSwitch implements ComponentFramework.StandardControl<IInputs, 
   private onChecked: CheckedHandler;
   private value: number[];
   private visible: boolean;
+  private height:number|null;
 
   private container: HTMLDivElement;
   /**
@@ -52,7 +53,9 @@ export class MultiSwitch implements ComponentFramework.StandardControl<IInputs, 
     this.visible = context.mode.isVisible;
     this.value = context.parameters.selection.raw || [];
     this.checkboxes = context.parameters.controlType.raw === '1';
+    this.height = context.parameters.height.raw;
     this.render(context.parameters.selection.attributes?.Options || []);
+
   }
 
   private render(options: ComponentFramework.PropertyHelper.OptionMetadata[]) {
@@ -65,6 +68,7 @@ export class MultiSwitch implements ComponentFramework.StandardControl<IInputs, 
         options,
         selectedOptions: this.value,
         onChecked: this.onChecked,
+        fixedHeight: this.height,
       },
       null,
     );

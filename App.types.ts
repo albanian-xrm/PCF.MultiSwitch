@@ -6,4 +6,5 @@ export interface IAppProps {
     options: ComponentFramework.PropertyHelper.OptionMetadata[];
     selectedOptions: number[],
     visible: boolean;
+    fixedHeight?:number | null;
 }

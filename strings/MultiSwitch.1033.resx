@@ -70,6 +70,12 @@
 <data name="Property_Desc_Key" xml:space="preserve">
     <value>The Multiple Options Field</value>
 </data>
+<data name="Height_Display_Key" xml:space="preserve">
+    <value>Stack container Height</value>
+</data>
+<data name="Height_Desc_Key" xml:space="preserve">
+    <value>Stack container Height</value>
+</data>
 <data name="ControlType_Display_Key" xml:space="preserve">
     <value>Control Type</value>
 </data>
