@@ -32,3 +32,10 @@
     scroll-behavior: smooth;
     justify-content: space-around;
   }
+  .css-296 {
+    flex-flow: column nowrap;
+    width: auto;
+    height: 100px;
+    box-sizing: border-box;
+    overflow-y: auto;
+}

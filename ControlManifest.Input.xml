@@ -7,7 +7,7 @@
     display-name-key="Control_Display_Name_Key"
     namespace="AlbanianXrm"
     preview-image="img\preview-image.png"
-    version="1.0.5"
+    version="1.0.8"
   >
     <external-service-usage enabled="false" />
     <property
@@ -22,6 +22,14 @@
       name="height"
       display-name-key="Height_Display_Key"
       description-key="Height_Desc_Key"
+      of-type="Whole.None"
+      usage="input"
+      required="false"
+    />
+            <property
+      name="columns"
+      display-name-key="Columns_Display_Key"
+      description-key="Columns_Desc_Key"
       of-type="Whole.None"
       usage="input"
       required="false"
