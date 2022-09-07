@@ -7,7 +7,7 @@
     display-name-key="Control_Display_Name_Key"
     namespace="AlbanianXrm"
     preview-image="img\preview-image.png"
-    version="1.0.9"
+    version="1.0.8"
   >
     <external-service-usage enabled="false" />
     <property
@@ -50,6 +50,24 @@
       <value 
         name="Checkboxes" 
         display-name-key="Checkboxes"
+      >1</value>
+    </property>
+     <property
+      name="orientation"
+      display-name-key="Orientation_Display_Key"
+      description-key="Orientation_Desc_Key"
+      of-type="Enum"
+      usage="input"
+      default-value="0"
+      required="false"
+    >    
+      <value 
+        name="Vertical" 
+        display-name-key="Vertical"
+      >0</value>
+      <value 
+        name="Horizontal" 
+        display-name-key="Horizontal"
       >1</value>
     </property>
     <resources>

@@ -8,6 +8,7 @@ import { CheckedHandler } from '@albanian-xrm/multi-switch/App.types';
 export class MultiSwitch implements ComponentFramework.StandardControl<IInputs, IOutputs> {
   private checkboxes: boolean;
   private disabled: boolean;
+  private horizontal: boolean;
   private notifyOutputChanged: () => void;
   private onChecked: CheckedHandler;
   private value: number[];
@@ -56,6 +57,7 @@ export class MultiSwitch implements ComponentFramework.StandardControl<IInputs, 
     this.checkboxes = context.parameters.controlType.raw === '1';
     this.height = context.parameters.height.raw;
     this.columns = context.parameters.columns.raw ? context.parameters.columns.raw : undefined;
+    this.horizontal = context.parameters.orientation.raw === '1';
     this.render(context.parameters.selection.attributes?.Options || []);
 
   }
@@ -72,6 +74,7 @@ export class MultiSwitch implements ComponentFramework.StandardControl<IInputs, 
         onChecked: this.onChecked,
         fixedHeight: this.height,
         columns: this.columns,
+        horizontal: this.horizontal
       },
       null,
     );

@@ -71,10 +71,22 @@
     <value>The Multiple Options Field</value>
 </data>
 <data name="Height_Display_Key" xml:space="preserve">
-    <value>Stack container Height</value>
+    <value>Fixed Height</value>
 </data>
 <data name="Height_Desc_Key" xml:space="preserve">
-    <value>Stack container Height</value>
+    <value>Input value of the container's Height</value>
+</data>
+<data name="Columns_Display_Key" xml:space="preserve">
+    <value>Columns</value>
+</data>
+<data name="Columns_Desc_Key" xml:space="preserve">
+    <value>Input value of the number of columns</value>
+</data>
+<data name="Orientation_Display_Key" xml:space="preserve">
+    <value>Orientation</value>
+</data>
+<data name="Orientation_Desc_Key" xml:space="preserve">
+    <value>Display choices on the orientation of the values</value>
 </data>
 <data name="ControlType_Display_Key" xml:space="preserve">
     <value>Control Type</value>

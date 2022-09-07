@@ -5,7 +5,6 @@ import { Stack } from '@fluentui/react/lib/components/Stack/Stack';
 import { initializeIcons } from '@fluentui/font-icons-mdl2';
 
 import { IAppProps, IProps } from '@albanian-xrm/multi-switch/App.types';
-import { IStackStyles } from '@fluentui/react';
 
 initializeIcons(undefined, { disableWarnings: true });
 const stackTokens = { childrenGap: 10 };
@@ -15,6 +14,7 @@ const App = ({
   disabled,
   fixedHeight: height,
   options,
+  horizontal,
   selectedOptions,
   visible,
   onChecked,
@@ -30,6 +30,17 @@ const App = ({
   }, [height]);
 
   const optionsGroup = useMemo(() => {
+    if (horizontal) {
+      const rows = Math.ceil(options.length / columns);
+      const optionsGroup = new Array<ComponentFramework.PropertyHelper.OptionMetadata[]>(rows);
+      for (let i = 0; i < options.length; i++) {
+        if (optionsGroup[i % rows] === undefined) {
+          optionsGroup[i % rows] = [];
+        }
+        optionsGroup[i % rows].push(options[i]);
+      }
+      return optionsGroup;
+    }
     const optionsGroup = new Array<ComponentFramework.PropertyHelper.OptionMetadata[]>(columns);
 
     for (let i = 0; i < options.length; i++) {
@@ -39,7 +50,7 @@ const App = ({
       optionsGroup[i % columns].push(options[i]);
     }
     return optionsGroup;
-  }, [options, columns]);
+  }, [options, columns, horizontal]);
 
   return visible ? (
     <div className="tjola-stack" style={nonShrinkingStackItemStyles}>
