@@ -3,7 +3,7 @@ import { render, unmountComponentAtNode } from 'react-dom';
 
 import App from '@albanian-xrm/multi-switch/App';
 import { IInputs, IOutputs } from '@albanian-xrm/multi-switch/generated/ManifestTypes';
-import { CheckedHandler } from '@albanian-xrm/multi-switch/App.types';
+import { CheckedHandler, IAppProps } from '@albanian-xrm/multi-switch/App.types';
 
 export class MultiSwitch implements ComponentFramework.StandardControl<IInputs, IOutputs> {
   private checkboxes: boolean;
@@ -13,14 +13,21 @@ export class MultiSwitch implements ComponentFramework.StandardControl<IInputs, 
   private onChecked: CheckedHandler;
   private value: number[];
   private visible: boolean;
-  private height:number|undefined;
-  private columns: number|undefined;
+  private height?: number;
+  private columns?: number;
+  private pillColorHoverOn?: string;
+  private pillColorOff?: string;
+  private pillColorOn?: string;
+  private thumbColorHoverOff?: string;
+  private thumbColorOff?: string
+  private thumbColorOn?: string;
+  private useColorForLabel?: IAppProps['useColorForLabel'];
 
   private container: HTMLDivElement;
   /**
    * Empty constructor.
    */
-  constructor() {}
+  constructor() { }
 
   /**
    * Used to initialize the control instance. Controls can kick off remote server calls and other initialization actions here.
@@ -55,11 +62,18 @@ export class MultiSwitch implements ComponentFramework.StandardControl<IInputs, 
     this.visible = context.mode.isVisible;
     this.value = context.parameters.selection.raw || [];
     this.checkboxes = context.parameters.controlType.raw === '1';
-    this.height = context.parameters.height.raw || undefined ;
+    this.height = context.parameters.height.raw || undefined;
     this.columns = context.parameters.columns.raw || undefined;
     this.horizontal = context.parameters.orientation.raw === '1';
-    this.render(context.parameters.selection.attributes?.Options || []);
+    this.pillColorHoverOn = context.parameters.pillColorHoverOn.raw || undefined;
+    this.pillColorOff = context.parameters.pillColorOff.raw || undefined;
+    this.pillColorOn = context.parameters.pillColorOn.raw || undefined;
+    this.thumbColorHoverOff = context.parameters.thumbColorHoverOff.raw || undefined;
+    this.thumbColorOff = context.parameters.thumbColorOff.raw || undefined;
+    this.thumbColorOn = context.parameters.thumbColorOn.raw || undefined;
+    this.useColorForLabel = context.parameters.useColorForLabel.raw;
 
+    this.render(context.parameters.selection.attributes?.Options || []);
   }
 
   private render(options: ComponentFramework.PropertyHelper.OptionMetadata[]) {
@@ -74,7 +88,14 @@ export class MultiSwitch implements ComponentFramework.StandardControl<IInputs, 
         onChecked: this.onChecked,
         fixedHeight: this.height,
         columns: this.columns,
-        horizontal: this.horizontal
+        horizontal: this.horizontal,
+        pillColorHoverOn: this.pillColorHoverOn,
+        pillColorOff: this.pillColorOff,
+        pillColorOn: this.pillColorOn,
+        thumbColorHoverOff: this.thumbColorHoverOff,
+        thumbColorOff: this.thumbColorOff,
+        thumbColorOn: this.thumbColorOn,
+        useColorForLabel: this.useColorForLabel,
       },
       null,
     );
