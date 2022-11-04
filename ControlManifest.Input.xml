@@ -18,7 +18,7 @@
       usage="bound"
       required="true"
     />
-        <property
+    <property
       name="height"
       display-name-key="Height_Display_Key"
       description-key="Height_Desc_Key"
@@ -26,7 +26,7 @@
       usage="input"
       required="false"
     />
-            <property
+    <property
       name="columns"
       display-name-key="Columns_Display_Key"
       description-key="Columns_Desc_Key"
@@ -44,7 +44,7 @@
       required="false"
     >    
       <value 
-        name="Swtiches" 
+        name="Switches" 
         display-name-key="Switches"
       >0</value>
       <value 
@@ -52,7 +52,7 @@
         display-name-key="Checkboxes"
       >1</value>
     </property>
-     <property
+    <property
       name="orientation"
       display-name-key="Orientation_Display_Key"
       description-key="Orientation_Desc_Key"
@@ -69,6 +69,72 @@
         name="Horizontal" 
         display-name-key="Horizontal"
       >1</value>
+    </property>
+    <property
+      name="pillColorOn"
+      display-name-key="PillColorOn_Display_Key"
+      description-key="PillColorOn_Desc_Key"
+      of-type="SingleLine.Text"
+      usage="input"
+      required="false"
+    />
+    <property
+      name="thumbColorOn"
+      display-name-key="ThumbColorOn_Display_Key"
+      description-key="ThumbColorOn_Desc_Key"
+      of-type="SingleLine.Text"
+      usage="input"
+      required="false"
+    />
+    <property
+      name="pillColorHoverOn"
+      display-name-key="PillColorHoverOn_Display_Key"
+      description-key="PillColorHoverOn_Desc_Key"
+      of-type="SingleLine.Text"
+      usage="input"
+      required="false"
+    />
+    <property
+      name="pillColorOff"
+      display-name-key="PillColorOff_Display_Key"
+      description-key="PillColorOff_Desc_Key"
+      of-type="SingleLine.Text"
+      usage="input"
+      required="false"
+    />
+    <property
+      name="thumbColorOff"
+      display-name-key="ThumbColorOff_Display_Key"
+      description-key="ThumbColorOff_Desc_Key"
+      of-type="SingleLine.Text"
+      usage="input"
+      required="false"
+    />
+    <property
+      name="thumbColorHoverOff"
+      display-name-key="ThumbColorHoverOff_Display_Key"
+      description-key="ThumbColorHoverOff_Desc_Key"
+      of-type="SingleLine.Text"
+      usage="input"
+      required="false"
+    />
+    <property
+      name="useColorForLabel"
+      display-name-key="UseColorForLabel_Display_Key"
+      description-key="UseColorForLabel_Desc_Key"
+      of-type="Enum"
+      usage="input"
+      default-value="No"
+      required="false"
+    >    
+      <value 
+        name="Yes" 
+        display-name-key="Yes"
+      >Yes</value>
+      <value 
+        name="No" 
+        display-name-key="No"
+      >No</value>
     </property>
     <resources>
       <code order="1" path="index.ts" />     

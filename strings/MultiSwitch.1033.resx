@@ -100,4 +100,52 @@
 <data name="Switches" xml:space="preserve">
     <value>Switches</value>
 </data>
+<data name="PillColorOn_Display_Key" xml:space="preserve">
+    <value>Pill Color On</value>
+</data>
+<data name="PillColorOn_Desc_Key" xml:space="preserve">
+    <value>Pill Color when the switch is On</value>
+</data>
+<data name="ThumbColorOn_Display_Key" xml:space="preserve">
+    <value>Thumb Color On</value>
+</data>
+<data name="ThumbColorOn_Desc_Key" xml:space="preserve">
+    <value>Thumb Color when the switch is On</value>
+</data>
+<data name="PillColorHoverOn_Display_Key" xml:space="preserve">
+    <value>Pill Color Hover On</value>
+</data>
+<data name="PillColorHoverOn_Desc_Key" xml:space="preserve">
+    <value>Pill Color when hovering a switch that is On</value>
+</data>
+<data name="PillColorOff_Display_Key" xml:space="preserve">
+    <value>Pill Color Off</value>
+</data>
+<data name="PillColorOff_Desc_Key" xml:space="preserve">
+    <value>Pill Color when the switch is Off</value>
+</data>
+<data name="ThumbColorOff_Display_Key" xml:space="preserve">
+    <value>Thumb Color Off</value>
+</data>
+<data name="ThumbColorOff_Desc_Key" xml:space="preserve">
+    <value>Thumb Color when the switch is Off</value>
+</data>
+<data name="ThumbColorHoverOff_Display_Key" xml:space="preserve">
+    <value>Thumb Color Hover Off</value>
+</data>
+<data name="ThumbColorHoverOff_Desc_Key" xml:space="preserve">
+    <value>Thumb Color when hovering a switch that is Off</value>
+</data>
+<data name="UseColorForLabel_Display_Key" xml:space="preserve">
+    <value>Use Color for Label</value>
+</data>
+<data name="UseColorForLabel_Desc_Key" xml:space="preserve">
+    <value>Use the color configured in the choice as the label color</value>
+</data>
+<data name="Yes" xml:space="preserve">
+    <value>Yes</value>
+</data>
+<data name="No" xml:space="preserve">
+    <value>No</value>
+</data>
 </root>
