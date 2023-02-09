@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk_albanian_xrm_multi_switch=self.webpackChunk_albanian_xrm_multi_switch||[]).push([[285],{29285:(a,i,t)=>{t.r(i),t.d(i,{SyntaxHighlighter:()=>e.d3,createCopyToClipboardFunction:()=>e.xV,default:()=>e.qG});var e=t(46852)}}]);
