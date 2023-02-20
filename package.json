@@ -1,0 +1,8 @@
+{
+    "name": "@albanian-xrm/multi-switch-workspace",
+    "private": true,
+    "workspaces": [
+        "pcf",
+        "storybook"
+    ]
+}

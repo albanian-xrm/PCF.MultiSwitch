@@ -1,0 +1,13 @@
+{
+    "name": "@albanian-xrm/multi-switch-stories",
+    "private": true,
+    "scripts": {
+        "storybook": "storybook dev -p 6006",
+        "test-storybook": "test-storybook",
+        "build-storybook": "storybook build"
+    },
+    "devDependencies": {
+        "@shko.online/componentframework-mock": "^0.1.18",
+        "eslint-plugin-storybook": "^0.6.10"
+    }
+}

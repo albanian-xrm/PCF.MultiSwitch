@@ -1,0 +1,10 @@
+{
+  "extends": "pcf-scripts/tsconfig_base.json",
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": ".",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "sourceMap": true
+  }
+}
