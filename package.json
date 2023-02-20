@@ -4,5 +4,12 @@
     "workspaces": [
         "pcf",
         "storybook"
-    ]
+    ],
+    "devDependencies": {
+        "prettier": "^2.8.4",
+        "replace-in-file": "^6.3.5"
+    },
+    "scripts": {
+        "postinstall": "node uglyWorkaround.js"
+    }
 }

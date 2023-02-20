@@ -1,5 +1,4 @@
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
 const webpack = require('webpack');
 
 const config = {
@@ -30,21 +29,7 @@ const config = {
       append: '\n//# sourceMappingURL=[url]',
       fileContext: './',
       filename: '[file].map',
-    })),
-      config.optimization = {
-        minimize: true,
-        minimizer: [
-          new TerserPlugin({
-            terserOptions: {
-              sourceMap: true,
-              format: {
-                comments: false,
-              },
-            },
-            extractComments: false,
-          }),
-        ],
-      }
+    }));
     return config;
   },
   features: {
