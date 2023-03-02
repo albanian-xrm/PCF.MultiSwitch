@@ -86,7 +86,7 @@ export default {
     banishedChoices: {
       name: getFromResource('BanishedChoices_Display_Key'),
       description: getFromResource('BanishedChoices_Desc_Key'),
-      control: 'string',
+      control: 'text',
       table: {
         category: 'Parameters',
       },
