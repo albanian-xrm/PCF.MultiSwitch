@@ -10,6 +10,9 @@
         "replace-in-file": "^6.3.5"
     },
     "scripts": {
+        "refreshTypes": "npm run refreshTypes -w pcf",
+        "storybook": "npm run storybook -w storybook",
+        "build-storybook": "npm run build-storybook -w storybook",
         "postinstall": "node uglyWorkaround.js"
     }
 }

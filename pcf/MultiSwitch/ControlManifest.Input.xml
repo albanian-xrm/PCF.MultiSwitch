@@ -136,6 +136,30 @@
         display-name-key="No"
       >No</value>
     </property>
+    <property
+      name="banishedChoices"
+      display-name-key="BanishedChoices_Display_Key"
+      description-key="BanishedChoices_Desc_Key"
+      of-type="SingleLine.Text"
+      usage="input"
+      required="false"
+    />
+    <property
+      name="relatedChoices"
+      display-name-key="RelatedChoices_Display_Key"
+      description-key="RelatedChoices_Desc_Key"
+      of-type="MultiSelectOptionSet"
+      usage="input"
+      required="false"
+    />
+     <property
+      name="groupSize"
+      display-name-key="GroupSize_Display_Key"
+      description-key="GroupSize_Desc_Key"
+      of-type="Whole.None"
+      usage="input"
+      required="false"
+    />
     <resources>
       <code order="1" path="index.ts" />     
       <resx path="strings/MultiSwitch.1033.resx" version="1.0.1" />

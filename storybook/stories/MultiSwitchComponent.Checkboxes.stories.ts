@@ -22,10 +22,7 @@ export default {
   decorators: [Decorator],
   parameters: {
     // More on Story layout: https://storybook.js.org/docs/html/configure/story-layout
-    layout: 'fullscreen',
-    controls: {
-      include: ['checked'],
-    },
+    layout: 'fullscreen'
   },
 } as Meta<StoryArgs>;
 

@@ -10,6 +10,8 @@ const config = {
   },
   webpackFinal: async config => {
     config.devtool = false;
+    config.resolve.fallback = config.resolve.fallback || {};
+    config.resolve.fallback.fs = false;
     config.resolve.plugins = config.resolve.plugins || [];
     config.resolve.plugins.push(new TsconfigPathsPlugin());
     config.module.rules.forEach(rule => {
@@ -33,10 +35,8 @@ const config = {
     return config;
   },
   features: {
-    interactionsDebugger: true // 👈 Enable playback controls
-  },
-  docs: {
-    autodocs: true
+    interactionsDebugger: true, // 👈 Enable playback controls
+    storyStoreV7: true,
   }
 };
 

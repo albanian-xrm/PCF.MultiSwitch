@@ -9,13 +9,13 @@ import { StoryObj } from '@storybook/react';
 
 export const Visibility = Template.bind({}) as StoryObj<StoryArgs>;
 Visibility.args = {
-  disabled: false,
-  visible: true,
-  selectedOptions: [],
+  isDisabled: false,
+  isVisible: true,
+  selection: [],
 };
 
 Visibility.parameters = {
   controls: {
-    include: ['visible'],
+    include: ['Visible'],
   },
 };

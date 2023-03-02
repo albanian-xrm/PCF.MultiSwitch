@@ -10,13 +10,13 @@ import { StoryObj } from '@storybook/react';
 export const Disabled = Template.bind({}) as StoryObj<StoryArgs>;
 
 Disabled.args = {
-  disabled: true,
-  visible: true,
-  selectedOptions: [],
+  isDisabled: true,
+  isVisible: true,
+  selection: [],
 };
 
 Disabled.parameters = {
   controls: {
-    include: ['disabled'],
+    include: ['Disabled'],
   },
 };

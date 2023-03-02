@@ -6,6 +6,7 @@
 import Template from '../Template';
 import { StoryArgs } from '../StoryArgs';
 import { StoryObj } from '@storybook/react';
+import { getFromResource } from '../getFromResource';
 
 export const FixedHeight = Template.bind({}) as StoryObj<StoryArgs>;
 FixedHeight.args = {
@@ -14,6 +15,6 @@ FixedHeight.args = {
 
 FixedHeight.parameters = {
   controls: {
-    include: ['height'],
+    include: [getFromResource('Height_Display_Key')],
   },
 };

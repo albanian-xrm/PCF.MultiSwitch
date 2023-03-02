@@ -8,11 +8,12 @@ import { StoryArgs } from '../StoryArgs';
 import { userEvent, waitFor, within } from '@storybook/testing-library';
 import delay, { timeout } from '../delay';
 import { StoryObj } from '@storybook/react';
+import { getFromResource } from '../getFromResource';
 
 export const Interaction = Template.bind({}) as StoryObj<StoryArgs>;
 Interaction.parameters = {
   controls: {
-    include: ['selectedOptions'],
+    include: [getFromResource('Property_Display_Key')],
   },
 };
 

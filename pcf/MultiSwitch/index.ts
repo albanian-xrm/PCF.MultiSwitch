@@ -23,6 +23,9 @@ export class MultiSwitch implements ComponentFramework.StandardControl<IInputs, 
   private thumbColorOff?: string;
   private thumbColorOn?: string;
   private useColorForLabel?: IAppProps['useColorForLabel'];
+  private banishedChoices?: string;
+  private relatedChoices?: number[];
+  private groupSize?: number;
 
   private container: HTMLDivElement;
   /**
@@ -75,7 +78,10 @@ export class MultiSwitch implements ComponentFramework.StandardControl<IInputs, 
     this.thumbColorOff = context.parameters.thumbColorOff.raw || undefined;
     this.thumbColorOn = context.parameters.thumbColorOn.raw || undefined;
     this.useColorForLabel = context.parameters.useColorForLabel.raw;
-
+    this.banishedChoices = context.parameters.banishedChoices.raw || undefined;
+    this.relatedChoices = context.parameters.relatedChoices.raw || undefined;
+    this.groupSize = context.parameters.groupSize.raw || undefined;
+console.log(context.parameters.selection.attributes?.Options);
     this.render(context.parameters.selection.attributes?.Options || []);
   }
 
@@ -99,6 +105,18 @@ export class MultiSwitch implements ComponentFramework.StandardControl<IInputs, 
         thumbColorOff: this.thumbColorOff,
         thumbColorOn: this.thumbColorOn,
         useColorForLabel: this.useColorForLabel,
+        banishedChoices: this.banishedChoices
+          ?.split(',')
+          .map((c) => {
+            try {
+              return parseInt(c.trim());
+            } catch {
+              return Infinity;
+            }
+          })
+          .filter((c) => c !== Infinity),
+        groupSize: this.groupSize,
+        relatedChoices: this.relatedChoices
       },
       null,
     );

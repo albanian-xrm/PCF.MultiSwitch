@@ -6,6 +6,7 @@
 import Template from '../Template';
 import { StoryArgs } from '../StoryArgs';
 import { StoryObj } from '@storybook/react';
+import { getFromResource } from '../getFromResource';
 
 export const Orientation = Template.bind({}) as StoryObj<StoryArgs>;
 Orientation.args = {
@@ -15,6 +16,6 @@ Orientation.args = {
 
 Orientation.parameters = {
   controls: {
-    include: ['orientation', 'columns'],
+    include: [getFromResource('Orientation_Display_Key'), getFromResource('Columns_Display_Key')],
   },
 };

@@ -4,7 +4,12 @@
 */
 
 import React from 'react';
-
+import { Meta } from '@storybook/react';
+import { argTypes } from './argTypes';
+import '@albanian-xrm/multi-switch/MultiSwitch/app.css';
+import { defaultArgs } from './defaultArgs';
+import { StoryArgs } from './StoryArgs';
+import { Decorator } from './Decorator';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useArgs } from '@storybook/client-api';
 import {
@@ -18,9 +23,98 @@ import {
 } from '@shko.online/componentframework-mock';
 
 import type { IInputs, IOutputs } from '@albanian-xrm/multi-switch/MultiSwitch/generated/ManifestTypes';
-import type { StoryFn } from '@storybook/react';
-import type { StoryArgs } from './StoryArgs';
+import type { StoryFn, StoryObj } from '@storybook/react';
 import { MultiSwitch } from '@albanian-xrm/multi-switch/MultiSwitch/index';
+import { getFromResource } from './getFromResource';
+
+const selectionMetadata: ComponentFramework.PropertyHelper.OptionMetadata[] = [
+  { Color: '', Label: 'Mutant', Value: 100001000 },
+  { Color: '', Label: 'Avenger', Value: 100001001 },
+  { Color: '', Label: 'Sorcerer', Value: 100001002 },
+  { Color: '', Label: 'Kryptonian', Value: 100002000 },
+  { Color: '', Label: 'Amazon', Value: 100002001 },
+  { Color: '', Label: 'Bat-Family', Value: 100002002 },
+  { Color: '', Label: 'Speedster', Value: 100002003 },
+  { Color: '', Label: 'Psiot', Value: 100003009 },
+  { Color: '', Label: 'Eternal Warrior', Value: 100003010 },
+  { Color: '', Label: 'Bloodshot', Value: 100003011 },
+];
+
+const relatedChoicesMetadata: ComponentFramework.PropertyHelper.OptionMetadata[] = [
+  { Color: '', Label: 'Marvel Universe', Value: 100001000 },
+  { Color: '', Label: 'DC Comics Universe', Value: 100002000 },
+  { Color: '', Label: 'Valiant Universe', Value: 100003000 },
+];
+
+export default {
+  title: 'Multi Switch Component/Related',
+  // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
+  argTypes: {
+    ...argTypes,
+    relatedChoices: {
+      name: getFromResource('RelatedChoices_Display_Key'),
+      description: getFromResource('RelatedChoices_Desc_Key'),
+      options: relatedChoicesMetadata.map((o) => o.Value),
+      control: {
+        type: 'multi-select',
+        labels: relatedChoicesMetadata.reduce((a, v) => ({ ...a, [v.Value]: v.Label }), {}),
+      },
+      table: {
+        category: 'Parameters',
+      },
+    },
+    selection: {
+      name: getFromResource('Property_Display_Key'),
+      description: getFromResource('Property_Desc_Key'),
+      options: selectionMetadata.map((o) => o.Value),
+      control: {
+        type: 'multi-select',
+        labels: selectionMetadata.reduce((a, v) => ({ ...a, [v.Value]: v.Label }), {}),
+      },
+      table: {
+        category: 'Parameters',
+      },
+    },
+    groupSize: {
+      name: getFromResource('GroupSize_Display_Key'),
+      description: getFromResource('GroupSize_Desc_Key'),
+      control: 'number',
+      table: {
+        category: 'Parameters',
+      },
+    },
+    banishedChoices: {
+      name: getFromResource('BanishedChoices_Display_Key'),
+      description: getFromResource('BanishedChoices_Desc_Key'),
+      control: 'string',
+      table: {
+        category: 'Parameters',
+      },
+    },
+    relatedChoicesMetadata: {
+      name: getFromResource('RelatedChoices_Display_Key'),
+      description: getFromResource('RelatedChoices_Desc_Key'),
+      control: {
+        type: 'object',
+      },
+      table: {
+        category: 'Metadata',
+      },
+    },
+  },
+  args: {
+    relatedChoices: [],
+    ...defaultArgs,
+  },
+  decorators: [Decorator],
+  parameters: {
+    // More on Story layout: https://storybook.js.org/docs/html/configure/story-layout
+    layout: 'fullscreen',
+    backgrounds: {
+      values: [{ name: 'white', value: '#fff' }],
+    },
+  },
+} as Meta<StoryArgs>;
 
 const Template: StoryFn<StoryArgs> = ({}) => {
   const [args, updateArgs] = useArgs<StoryArgs>();
@@ -59,6 +153,11 @@ const Template: StoryFn<StoryArgs> = ({}) => {
       'relatedChoices',
     ) as ShkoOnline.PickListAttributeMetadata;
 
+    const selectionMetadata = mockGenerator.metadata.getAttributeMetadata(
+      '!CanvasApp',
+      'selection',
+    ) as ShkoOnline.PickListAttributeMetadata;
+
     relatedChoicesMetadata.OptionSet = {
       IsCustomOptionSet: true,
       MetadataId: '',
@@ -67,15 +166,16 @@ const Template: StoryFn<StoryArgs> = ({}) => {
       Options: {},
     };
 
+    selectionMetadata.OptionSet = { ...relatedChoicesMetadata.OptionSet };
+    selectionMetadata.OptionSet.Options = {};
+
+    args.relatedChoicesMetadata.forEach((option: { Value: number; Label: string; Color?: string | undefined }) => {
+      relatedChoicesMetadata.OptionSet.Options[option.Value] = option;
+    });
+
     mockGenerator.metadata.upsertAttributeMetadata('!CanvasApp', relatedChoicesMetadata);
 
-    const selectionMetadata = mockGenerator.metadata.getAttributeMetadata(
-      '!CanvasApp',
-      'selection',
-    ) as ShkoOnline.PickListAttributeMetadata;
-
-    selectionMetadata.OptionSet = { ...relatedChoicesMetadata.OptionSet };
-
+    console.log(selectionMetadata);
     args.selectionMetadata.forEach((option: { Value: number; Label: string; Color?: string | undefined }) => {
       selectionMetadata.OptionSet.Options[option.Value] = option;
     });
@@ -99,7 +199,7 @@ const Template: StoryFn<StoryArgs> = ({}) => {
       useColorForLabel: args.useColorForLabel || undefined,
       banishedChoices: '',
       groupSize: 1,
-      relatedChoices: [],
+      relatedChoices: args.relatedChoices,
     });
 
     mockGenerator.onOutputChanged.callsFake(() => {
@@ -139,4 +239,14 @@ const Template: StoryFn<StoryArgs> = ({}) => {
   return <div ref={container}></div>;
 };
 
-export default Template;
+export const Related = Template.bind({}) as StoryObj<StoryArgs>;
+
+Related.args = {
+  selectionMetadata,
+  relatedChoicesMetadata,
+  groupSize: 3,
+  relatedChoices: [100001000],
+  banishedChoices: '100002003,100002009',
+};
+
+Related.parameters = { controls: { expanded: true } };

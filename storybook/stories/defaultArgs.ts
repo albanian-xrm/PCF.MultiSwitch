@@ -20,7 +20,8 @@ import {
   } from './MultiSwitch/Constants';
 
 export const defaultArgs : Partial<StoryArgs> = {
-    visible: true, 
+    isVisible: true, 
+    isDisabled: false,
     height: 0,
     controlType: '0',
     orientation: '0',
@@ -32,7 +33,7 @@ export const defaultArgs : Partial<StoryArgs> = {
     thumbColorOn: null,
     useColorForLabel: 'No',
     columns: 1,
-    options: [
+    selectionMetadata: [
       { Value: 0, Label: FIRST_OPTION, Color: '#dd0000' },
       { Value: 1, Label: SECOND_OPTION, Color: '#dd0000' },
       { Value: 2, Label: THIRD_OPTION, Color: '#dddd00' },
@@ -45,5 +46,5 @@ export const defaultArgs : Partial<StoryArgs> = {
       { Value: 10, Label: TENTH_OPTION, Color: '#dddddd' },
       { Value: 11, Label: ELEVENTH_OPTION, Color: '#dddddd' },
     ],
-    selectedOptions: [],
+    selection: [],
   }

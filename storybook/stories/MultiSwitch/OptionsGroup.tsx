@@ -6,6 +6,7 @@
 import Template from '../Template';
 import { StoryArgs } from '../StoryArgs';
 import { StoryObj } from '@storybook/react';
+import { getFromResource } from '../getFromResource';
 
 export const OptionsGroup = Template.bind({}) as StoryObj<StoryArgs>;
 OptionsGroup.args = {
@@ -14,6 +15,6 @@ OptionsGroup.args = {
 
 OptionsGroup.parameters = {
   controls: {
-    include: ['columns'],
+    include: [getFromResource('Columns_Display_Key')],
   },
 };

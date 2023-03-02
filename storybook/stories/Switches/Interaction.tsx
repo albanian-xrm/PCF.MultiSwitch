@@ -21,11 +21,12 @@ import {
   ELEVENTH_OPTION,
 } from '../MultiSwitch/Constants';
 import { StoryObj } from '@storybook/react';
+import { getFromResource } from '../getFromResource';
 
 export const Interaction = Template.bind({}) as StoryObj<StoryArgs>;
 Interaction.parameters = {
   controls: {
-    include: ['selectedOptions'],
+    include: [getFromResource('Property_Display_Key')],
   },
 };
 

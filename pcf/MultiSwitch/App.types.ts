@@ -21,6 +21,9 @@ export interface IAppProps {
   thumbColorOff?: string;
   thumbColorHoverOff?: string;
   useColorForLabel?: Enum<IInputs['useColorForLabel']>;
+  banishedChoices?: number[];
+  relatedChoices?: number[];
+  groupSize?: number;
 }
 
 export interface IProps {

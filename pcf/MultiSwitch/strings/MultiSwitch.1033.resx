@@ -61,11 +61,23 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
+     <data name="BanishedChoices_Display_Key" xml:space="preserve">
+        <value>Banished Choices</value>
+    </data>
+    <data name="BanishedChoices_Desc_Key" xml:space="preserve">
+        <value>Comma separated list of choices to exclude from the list</value>
+    </data>
     <data name="Control_Display_Name_Key" xml:space="preserve">
         <value>AlbanianXrm's MultiSwitch</value>
     </data>
     <data name="Control_Description_Key" xml:space="preserve">
         <value>Display Choices as a list of Switches</value>
+    </data>
+    <data name="GroupSize_Display_Key" xml:space="preserve">
+        <value>Group Size</value>
+    </data>
+    <data name="GroupSize_Desc_Key" xml:space="preserve">
+        <value>Used in combination with Related Choices can be used to filter only choices that match the prefix of the selected parent choices</value>
     </data>
     <data name="Property_Display_Key" xml:space="preserve">
         <value>Multiple Options</value>
@@ -108,6 +120,12 @@
     </data>
     <data name="PillColorOn_Desc_Key" xml:space="preserve">
         <value>Pill Color when the switch is On</value>
+    </data>
+    <data name="RelatedChoices_Display_Key" xml:space="preserve">
+        <value>Related Choices</value>
+    </data>
+    <data name="RelatedChoices_Desc_Key" xml:space="preserve">
+        <value>This multiple selection field can be used to filter only choices that match the prefix of the selected parent choices</value>
     </data>
     <data name="ThumbColorOn_Display_Key" xml:space="preserve">
         <value>Thumb Color On</value>
