@@ -29,9 +29,6 @@ const App = ({
   thumbColorOff = undefined,
   thumbColorHoverOff = undefined,
   useColorForLabel = 'No',
-  banishedChoices = undefined,
-  relatedChoices = undefined,
-  groupSize = undefined,
 }: IAppProps) => {
   const nonShrinkingStackItemStyles = useStackItemStyles(fixedHeight);
   const switchStyles = useSwitchStyles(
@@ -42,7 +39,7 @@ const App = ({
     thumbColorOff,
     thumbColorHoverOff,
   );
-  const optionsGroup = useRowsColumns(options, columns, horizontal, banishedChoices, relatedChoices, groupSize);
+  const optionsGroup = useRowsColumns(options, columns, horizontal);
   const labelColors = useLabelColors(options, useColorForLabel, checkboxes);
   return visible ? (
     <div className="tjola-stack" style={nonShrinkingStackItemStyles}>
@@ -83,3 +80,4 @@ const App = ({
 };
 App.displayName = 'MultiSwitch';
 export default App;
+
