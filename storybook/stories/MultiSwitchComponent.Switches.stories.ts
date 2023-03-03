@@ -12,7 +12,7 @@ import { StoryArgs } from './StoryArgs';
 import { Decorator } from './Decorator';
 
 export default {
-  title: 'Multi Switch Component/Switches',
+  title: 'AlbanianXrm\'s MultiSwitch/Switches',
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes,
   args: {

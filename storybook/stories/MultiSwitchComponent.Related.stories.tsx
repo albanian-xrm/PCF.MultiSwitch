@@ -47,7 +47,7 @@ const relatedChoicesMetadata: ComponentFramework.PropertyHelper.OptionMetadata[]
 ];
 
 export default {
-  title: 'Multi Switch Component/Related',
+  title: 'AlbanianXrm\'s MultiSwitch/Related',
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {
     ...argTypes,
@@ -98,7 +98,8 @@ export default {
         type: 'object',
       },
       table: {
-        category: 'Metadata',
+        category: 'Parameters',
+        subcategory: 'Metadata',
       },
     },
   },

@@ -12,7 +12,7 @@ import { argTypes } from './argTypes';
 import { Decorator } from './Decorator';
 
 export default {
-  title: 'Multi Switch Component/Checkboxes',
+  title: 'AlbanianXrm\'s MultiSwitch/Checkboxes',
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes,
   args: {

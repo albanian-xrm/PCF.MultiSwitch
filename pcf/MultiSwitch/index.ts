@@ -1,5 +1,6 @@
 import { createElement } from 'react';
-import { render, unmountComponentAtNode } from 'react-dom';
+import { createRoot } from 'react-dom/client';
+import type { Root } from 'react-dom/client';
 
 import App from './App';
 import type { IInputs, IOutputs } from './generated/ManifestTypes';
@@ -27,7 +28,7 @@ export class MultiSwitch implements ComponentFramework.StandardControl<IInputs, 
   private relatedChoices?: number[];
   private groupSize?: number;
 
-  private container: HTMLDivElement;
+  private root: Root;
   /**
    * Empty constructor.
    */
@@ -50,7 +51,7 @@ export class MultiSwitch implements ComponentFramework.StandardControl<IInputs, 
   ): void {
     showBanner();
     this.notifyOutputChanged = notifyOutputChanged;
-    this.container = container;
+    this.root = createRoot(container);
     this.onChecked = (checked, value) => {
       if (checked) {
         this.value = [value, ...this.value.filter((oldValue) => oldValue !== value)];
@@ -81,7 +82,7 @@ export class MultiSwitch implements ComponentFramework.StandardControl<IInputs, 
     this.banishedChoices = context.parameters.banishedChoices.raw || undefined;
     this.relatedChoices = context.parameters.relatedChoices.raw || undefined;
     this.groupSize = context.parameters.groupSize.raw || undefined;
-console.log(context.parameters.selection.attributes?.Options);
+
     this.render(context.parameters.selection.attributes?.Options || []);
   }
 
@@ -116,12 +117,12 @@ console.log(context.parameters.selection.attributes?.Options);
           })
           .filter((c) => c !== Infinity),
         groupSize: this.groupSize,
-        relatedChoices: this.relatedChoices
+        relatedChoices: this.relatedChoices,
       },
       null,
     );
     // Add control initialization code
-    render(app, this.container);
+    this.root.render(app);
   }
 
   /**
@@ -145,6 +146,6 @@ console.log(context.parameters.selection.attributes?.Options);
    * i.e. cancelling any pending remote calls, removing listeners, etc.
    */
   public destroy(): void {
-    unmountComponentAtNode(this.container);
+    this.root.unmount();
   }
 }

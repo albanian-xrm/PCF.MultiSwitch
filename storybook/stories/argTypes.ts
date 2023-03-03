@@ -144,7 +144,8 @@ export const argTypes: Partial<ArgTypes<StoryArgs>> = {
     description: getFromResource('Property_Desc_Key'),
     control: 'object',
     table: {
-      category: 'Metadata',
+      category: 'Parameters',
+      subcategory: 'Metadata',
     },
   },
 };
