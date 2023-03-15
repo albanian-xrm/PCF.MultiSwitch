@@ -105,19 +105,19 @@ export class MultiSwitch implements ComponentFramework.StandardControl<IInputs, 
       })
       .filter((c) => c !== Infinity);
 
-      const groupSize = this.groupSize;
-      const relatedChoices = this.relatedChoices;
+    const groupSize = this.groupSize;
+    const relatedChoices = this.relatedChoices;
 
-      const filteredOptions = options.filter(
-        (option) =>
-          (banishedChoices === undefined || banishedChoices.indexOf(option.Value) === -1) &&
-          (groupSize === undefined ||
-            relatedChoices === undefined ||
-            relatedChoices.some(
-              (related) =>
-                Math.floor(option.Value / Math.pow(10, groupSize)) === Math.floor(related / Math.pow(10, groupSize)),
-            )),
-      );
+    const filteredOptions = options.filter(
+      (option) =>
+        (banishedChoices === undefined || banishedChoices.indexOf(option.Value) === -1) &&
+        (groupSize === undefined ||
+          relatedChoices === undefined ||
+          relatedChoices.some(
+            (related) =>
+              Math.floor(option.Value / Math.pow(10, groupSize)) === Math.floor(related / Math.pow(10, groupSize)),
+          )),
+    );
 
     const app = createElement(
       App,
@@ -137,14 +137,25 @@ export class MultiSwitch implements ComponentFramework.StandardControl<IInputs, 
         thumbColorHoverOff: this.thumbColorHoverOff,
         thumbColorOff: this.thumbColorOff,
         thumbColorOn: this.thumbColorOn,
-        useColorForLabel: this.useColorForLabel     
+        useColorForLabel: this.useColorForLabel,
       },
       null,
     );
     // Add control initialization code
     this.root.render(app);
-    const allowedOptions = filteredOptions.map(o=>o.Value);
-    if (this.value?.some((v) => (allowedOptions.indexOf(v) === -1 ))) {
+    const allowedOptions = options
+      .filter(
+        (option) =>
+          groupSize === undefined ||
+          relatedChoices === undefined ||
+          (banishedChoices !== undefined && banishedChoices.indexOf(option.Value) > -1) ||
+          relatedChoices.some(
+            (related) =>
+              Math.floor(option.Value / Math.pow(10, groupSize)) === Math.floor(related / Math.pow(10, groupSize)),
+          ),
+      )
+      .map((option) => option.Value);
+    if (this.value?.some((v) => allowedOptions.indexOf(v) === -1)) {
       this.value = this.value.filter((v) => allowedOptions.indexOf(v) !== -1);
       this.notifyOutputChanged();
     }
