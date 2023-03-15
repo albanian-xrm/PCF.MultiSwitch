@@ -7,6 +7,18 @@ import type { IInputs, IOutputs } from './generated/ManifestTypes';
 import type { IAppProps, CheckedHandler } from './App.types';
 import { showBanner } from './banner';
 
+const convertToList = (value?: string) =>
+  value
+    ?.split(',')
+    .map((c) => {
+      try {
+        return parseInt(c.trim());
+      } catch {
+        return Infinity;
+      }
+    })
+    .filter((c) => c !== Infinity);
+
 export class MultiSwitch implements ComponentFramework.StandardControl<IInputs, IOutputs> {
   private checkboxes: boolean;
   private disabled: boolean;
@@ -24,6 +36,7 @@ export class MultiSwitch implements ComponentFramework.StandardControl<IInputs, 
   private thumbColorOff?: string;
   private thumbColorOn?: string;
   private useColorForLabel?: IAppProps['useColorForLabel'];
+  private staticChoices?: string;
   private banishedChoices?: string;
   private relatedChoices?: number[];
   private groupSize?: number;
@@ -86,6 +99,7 @@ export class MultiSwitch implements ComponentFramework.StandardControl<IInputs, 
     this.thumbColorOff = context.parameters.thumbColorOff.raw || undefined;
     this.thumbColorOn = context.parameters.thumbColorOn.raw || undefined;
     this.useColorForLabel = context.parameters.useColorForLabel.raw;
+    this.staticChoices = context.parameters.staticChoices.raw || undefined;
     this.banishedChoices = context.parameters.banishedChoices.raw || undefined;
     this.relatedChoices = context.parameters.relatedChoices.raw || [];
     this.groupSize = context.parameters.groupSize.raw || undefined;
@@ -94,30 +108,24 @@ export class MultiSwitch implements ComponentFramework.StandardControl<IInputs, 
   }
 
   private render(options: ComponentFramework.PropertyHelper.OptionMetadata[]) {
-    const banishedChoices = this.banishedChoices
-      ?.split(',')
-      .map((c) => {
-        try {
-          return parseInt(c.trim());
-        } catch {
-          return Infinity;
-        }
-      })
-      .filter((c) => c !== Infinity);
+    const staticChoices = convertToList(this.staticChoices);
+    const banishedChoices = convertToList(this.banishedChoices);
 
     const groupSize = this.groupSize;
     const relatedChoices = this.relatedChoices;
 
-    const filteredOptions = options.filter(
-      (option) =>
-        (banishedChoices === undefined || banishedChoices.indexOf(option.Value) === -1) &&
-        (groupSize === undefined ||
-          relatedChoices === undefined ||
-          relatedChoices.some(
-            (related) =>
-              Math.floor(option.Value / Math.pow(10, groupSize)) === Math.floor(related / Math.pow(10, groupSize)),
-          )),
-    );
+    const filteredOptions = options
+      .filter((option) => staticChoices === undefined || staticChoices.indexOf(option.Value) > -1)
+      .filter(
+        (option) =>
+          (banishedChoices === undefined || banishedChoices.indexOf(option.Value) === -1) &&
+          (groupSize === undefined ||
+            relatedChoices === undefined ||
+            relatedChoices.some(
+              (related) =>
+                Math.floor(option.Value / Math.pow(10, groupSize)) === Math.floor(related / Math.pow(10, groupSize)),
+            )),
+      );
 
     const app = createElement(
       App,
@@ -143,6 +151,10 @@ export class MultiSwitch implements ComponentFramework.StandardControl<IInputs, 
     );
     // Add control initialization code
     this.root.render(app);
+    /**
+     * List of allowed options defined as follows. If it is in the banished choices it can be set by another instance of the control. If it is  
+     * Note: Intentionally leaving out staticChoices from this logic
+     */
     const allowedOptions = options
       .filter(
         (option) =>

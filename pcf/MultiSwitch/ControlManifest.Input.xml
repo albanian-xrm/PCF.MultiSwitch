@@ -137,6 +137,14 @@
       >No</value>
     </property>
     <property
+      name="staticChoices"
+      display-name-key="StaticChoices_Display_Key"
+      description-key="StaticChoices_Desc_Key"
+      of-type="SingleLine.Text"
+      usage="input"
+      required="false"
+    />
+    <property
       name="banishedChoices"
       display-name-key="BanishedChoices_Display_Key"
       description-key="BanishedChoices_Desc_Key"

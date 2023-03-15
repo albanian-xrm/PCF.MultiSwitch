@@ -19,6 +19,7 @@ export interface StoryArgs {
   thumbColorOff: string | null;
   thumbColorOn: string | null;
   useColorForLabel: 'Yes' | 'No';
+  staticChoices: string;
   banishedChoices: string;
   groupSize: number;
   relatedChoices: number[];

@@ -61,7 +61,13 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-     <data name="BanishedChoices_Display_Key" xml:space="preserve">
+    <data name="StaticChoices_Display_Key" xml:space="preserve">
+        <value>Static Choices</value>
+    </data>
+    <data name="StaticChoices_Desc_Key" xml:space="preserve">
+        <value>Comma separated list of choices. If specified the control will only show these from the list</value>
+    </data>
+    <data name="BanishedChoices_Display_Key" xml:space="preserve">
         <value>Banished Choices</value>
     </data>
     <data name="BanishedChoices_Desc_Key" xml:space="preserve">

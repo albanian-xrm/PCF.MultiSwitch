@@ -83,6 +83,14 @@ export default {
         category: 'Parameters',
       },
     },
+    staticChoices: {
+      name: getFromResource('StaticChoices_Display_Key'),
+      description: getFromResource('StaticChoices_Desc_Key'),
+      control: 'text',
+      table: {
+        category: 'Parameters',
+      },
+    },
     banishedChoices: {
       name: getFromResource('BanishedChoices_Display_Key'),
       description: getFromResource('BanishedChoices_Desc_Key'),
@@ -142,6 +150,7 @@ const Template: StoryFn<StoryArgs> = ({}) => {
         thumbColorOff: StringPropertyMock,
         thumbColorOn: StringPropertyMock,
         useColorForLabel: EnumPropertyMock<'Yes' | 'No'>,
+        staticChoices: StringPropertyMock,
         banishedChoices: StringPropertyMock,
         groupSize: WholeNumberPropertyMock,
         relatedChoices: MultiSelectOptionSetPropertyMock,
@@ -199,6 +208,7 @@ const Template: StoryFn<StoryArgs> = ({}) => {
       thumbColorHoverOff: args.thumbColorHoverOff || undefined,
       useColorForLabel: args.useColorForLabel || undefined,
       banishedChoices: '',
+      staticChoices: '',
       groupSize: 1,
       relatedChoices: args.relatedChoices,
     });
@@ -227,6 +237,7 @@ const Template: StoryFn<StoryArgs> = ({}) => {
     mockGenerator.context._parameters.thumbColorOff._SetValue(args.thumbColorOff);
     mockGenerator.context._parameters.thumbColorOn._SetValue(args.thumbColorOn);
     mockGenerator.context._parameters.useColorForLabel._SetValue(args.useColorForLabel);
+    mockGenerator.context._parameters.staticChoices._SetValue(args.staticChoices);
     mockGenerator.context._parameters.banishedChoices._SetValue(args.banishedChoices);
     mockGenerator.context._parameters.groupSize._SetValue(args.groupSize);
     mockGenerator.context._parameters.relatedChoices._SetValue(args.relatedChoices);
@@ -248,6 +259,7 @@ Related.args = {
   groupSize: 3,
   relatedChoices: [100001000],
   banishedChoices: '100002003,100002009',
+  staticChoices: ''
 };
 
 Related.parameters = { controls: { expanded: true } };
