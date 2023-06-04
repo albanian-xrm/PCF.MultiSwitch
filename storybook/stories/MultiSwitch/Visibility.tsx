@@ -3,19 +3,21 @@
     Licensed under the MIT license.
 */
 
-import Template from '../Template';
+import renderGenerator from '../renderGenerator';
 import { StoryArgs } from '../StoryArgs';
-import { StoryObj } from '@storybook/react';
+import { StoryObj } from '@storybook/html';
 
-export const Visibility = Template.bind({}) as StoryObj<StoryArgs>;
-Visibility.args = {
-  isDisabled: false,
-  isVisible: true,
-  selection: [],
-};
-
-Visibility.parameters = {
-  controls: {
-    include: ['Visible'],
+export const Visibility: StoryObj<StoryArgs> = {
+  render: renderGenerator(),
+  args: {
+    isDisabled: false,
+    isVisible: true,
+    selection: [],
+  },
+  parameters: {
+    controls: {
+      include: ['Visible'],
+    },
   },
 };
+

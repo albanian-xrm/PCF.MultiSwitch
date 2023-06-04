@@ -3,18 +3,20 @@
     Licensed under the MIT license.
 */
 
-import Template from '../Template';
-import { StoryArgs } from '../StoryArgs';
-import { StoryObj } from '@storybook/react';
+import type { StoryObj } from '@storybook/html';
+import type { StoryArgs } from '../StoryArgs';
 import { getFromResource } from '../getFromResource';
+import renderGenerator from 'stories/renderGenerator';
 
-export const OptionsGroup = Template.bind({}) as StoryObj<StoryArgs>;
-OptionsGroup.args = {
-  columns: 2,
-};
-
-OptionsGroup.parameters = {
-  controls: {
-    include: [getFromResource('Columns_Display_Key')],
+export const OptionsGroup: StoryObj<StoryArgs> = {
+  render: renderGenerator(),
+  args: {
+    columns: 2,
+  },
+  parameters: {
+    controls: {
+      include: [getFromResource('Columns_Display_Key')],
+    },
   },
 };
+

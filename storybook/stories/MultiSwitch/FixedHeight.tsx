@@ -3,18 +3,20 @@
     Licensed under the MIT license.
 */
 
-import Template from '../Template';
 import { StoryArgs } from '../StoryArgs';
-import { StoryObj } from '@storybook/react';
+import { StoryObj } from '@storybook/html';
 import { getFromResource } from '../getFromResource';
+import renderGenerator from 'stories/renderGenerator';
 
-export const FixedHeight = Template.bind({}) as StoryObj<StoryArgs>;
-FixedHeight.args = {
-  height: 100,
-};
-
-FixedHeight.parameters = {
-  controls: {
-    include: [getFromResource('Height_Display_Key')],
+export const FixedHeight: StoryObj<StoryArgs> = {
+  render: renderGenerator(),
+  args: {
+    height: 100,
+  },
+  parameters: {
+    controls: {
+      include: [getFromResource('Height_Display_Key')],
+    },
   },
 };
+

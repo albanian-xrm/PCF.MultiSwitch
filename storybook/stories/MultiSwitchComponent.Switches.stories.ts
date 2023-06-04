@@ -3,7 +3,7 @@
     Licensed under the MIT license.
 */
 
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/html';
 
 import { argTypes } from './argTypes';
 import '@albanian-xrm/multi-switch/MultiSwitch/app.css';

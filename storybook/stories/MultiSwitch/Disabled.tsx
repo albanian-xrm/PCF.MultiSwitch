@@ -3,20 +3,21 @@
     Licensed under the MIT license.
 */
 
-import Template from '../Template';
+import renderGenerator from 'stories/renderGenerator';
 import { StoryArgs } from '../StoryArgs';
-import { StoryObj } from '@storybook/react';
+import { StoryObj } from '@storybook/html';
 
-export const Disabled = Template.bind({}) as StoryObj<StoryArgs>;
-
-Disabled.args = {
-  isDisabled: true,
-  isVisible: true,
-  selection: [],
-};
-
-Disabled.parameters = {
-  controls: {
-    include: ['Disabled'],
+export const Disabled: StoryObj<StoryArgs> = {
+  render: renderGenerator(),
+  args: {
+    isDisabled: true,
+    isVisible: true,
+    selection: [],
+  },
+  parameters: {
+    controls: {
+      include: ['Disabled'],
+    },
   },
 };
+

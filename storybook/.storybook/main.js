@@ -1,12 +1,13 @@
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const webpack = require('webpack');
 
+/** @type { import('@storybook/html-webpack5').StorybookConfig } */
 const config = {
-  "stories": ["../stories/**/*.stories.mdx", "../stories/**/*.stories.@(js|jsx|ts|tsx)"],
-  "addons": ["@storybook/addon-links", "@storybook/addon-essentials", "@storybook/addon-interactions"],
-  "framework": {
-    name: "@storybook/react-webpack5",
-    options: {}
+  stories: ['../stories/**/*.mdx', '../stories/**/*.stories.@(js|jsx|ts|tsx)'],
+  addons: ['@storybook/addon-links', '@storybook/addon-essentials', '@storybook/addon-interactions'],
+  framework: {
+    name: '@storybook/html-webpack5',
+    options: {},
   },
   webpackFinal: async config => {
     config.devtool = false;
@@ -39,5 +40,4 @@ const config = {
     storyStoreV7: true,
   }
 };
-
 export default config;

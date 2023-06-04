@@ -3,13 +3,14 @@
     Licensed under the MIT license.
 */
 
-import { ArgTypes } from '@storybook/react';
+import { ArgTypes } from '@storybook/html';
 import { getFromResource } from './getFromResource';
 import { StoryArgs } from './StoryArgs';
 
 export const argTypes: Partial<ArgTypes<StoryArgs>> = {
   isDisabled: {
     name: 'Disabled',
+    control: 'boolean',
     table: {
       category: 'Mode',
       defaultValue: { summary: 'false' },
@@ -17,6 +18,7 @@ export const argTypes: Partial<ArgTypes<StoryArgs>> = {
   },
   isVisible: {
     name: 'Visible',
+    control: 'boolean',
     table: {
       category: 'Mode',
       defaultValue: { summary: 'true' },

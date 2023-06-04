@@ -3,19 +3,21 @@
     Licensed under the MIT license.
 */
 
-import Template from '../Template';
 import { StoryArgs } from '../StoryArgs';
-import { StoryObj } from '@storybook/react';
+import { StoryObj } from '@storybook/html';
 import { getFromResource } from '../getFromResource';
+import renderGenerator from 'stories/renderGenerator';
 
-export const Orientation = Template.bind({}) as StoryObj<StoryArgs>;
-Orientation.args = {
-  orientation: '0',
-  columns: 5,
-};
-
-Orientation.parameters = {
-  controls: {
-    include: [getFromResource('Orientation_Display_Key'), getFromResource('Columns_Display_Key')],
+export const Orientation: StoryObj<StoryArgs> = {
+  render: renderGenerator(),
+  args: {
+    orientation: '0',
+    columns: 5,
+  },
+  parameters: {
+    controls: {
+      include: [getFromResource('Orientation_Display_Key'), getFromResource('Columns_Display_Key')],
+    },
   },
 };
+

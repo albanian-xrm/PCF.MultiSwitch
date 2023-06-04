@@ -178,6 +178,7 @@ export class MultiSwitch implements ComponentFramework.StandardControl<IInputs, 
    * @param context The entire property bag available to control via Context Object; It contains values as set up by the customizer mapped to names defined in the manifest, as well as utility functions
    */
   public updateView(context: ComponentFramework.Context<IInputs>): void {
+    console.log('updateView', context.updatedProperties);
     this.mapContextAndRender(context);
   }
 
