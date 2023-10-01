@@ -3,7 +3,7 @@
     Licensed under the MIT license.
 */
 
-import { StoryArgs } from "./StoryArgs";
+import type { StoryArgs } from "./StoryArgs";
 
 import {
     FIFTH_OPTION,

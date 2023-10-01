@@ -1,4 +1,5 @@
 import resource from 'raw-loader!!../../pcf/MultiSwitch/strings/MultiSwitch.1033.resx';
+
 const xmlResource = new DOMParser().parseFromString(resource, 'text/xml');
 const elements = xmlResource.getElementsByTagNameNS('', 'data');
 export const getFromResource = (key: string) => {

@@ -3,7 +3,8 @@
     Licensed under the MIT license.
 */
 
-import { StoryArgs } from '../StoryArgs';
+import type { StoryObj } from '@storybook/html';
+import type { StoryArgs } from '../StoryArgs';
 import { userEvent, waitFor, within } from '@storybook/testing-library';
 import delay, { timeout } from '../delay';
 import {
@@ -19,7 +20,6 @@ import {
   TENTH_OPTION,
   ELEVENTH_OPTION,
 } from '../MultiSwitch/Constants';
-import { StoryObj } from '@storybook/html';
 import { getFromResource } from '../getFromResource';
 import renderGenerator from '../renderGenerator';
 

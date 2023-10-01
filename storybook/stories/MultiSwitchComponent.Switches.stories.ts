@@ -3,12 +3,12 @@
     Licensed under the MIT license.
 */
 
-import { Meta } from '@storybook/html';
+import type { Meta } from '@storybook/html';
+import type { StoryArgs } from './StoryArgs';
 
 import { argTypes } from './argTypes';
-import '@albanian-xrm/multi-switch/MultiSwitch/app.css';
+import '../../pcf/MultiSwitch/app.css';
 import { defaultArgs } from './defaultArgs';
-import { StoryArgs } from './StoryArgs';
 import { Decorator } from './Decorator';
 
 export default {

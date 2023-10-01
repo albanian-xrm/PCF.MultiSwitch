@@ -6,17 +6,18 @@
 import type { StoryObj } from '@storybook/html';
 import type { StoryArgs } from '../StoryArgs';
 import { getFromResource } from '../getFromResource';
-import renderGenerator from 'stories/renderGenerator';
+import renderGenerator from '../renderGenerator';
 
-export const OptionsGroup: StoryObj<StoryArgs> = {
+export const Default = {
   render: renderGenerator(),
-  args: {
-    columns: 2,
-  },
   parameters: {
     controls: {
-      include: [getFromResource('Columns_Display_Key')],
+      include: [
+        getFromResource('Property_Display_Key'),
+        getFromResource('ControlType_Display_Key'),
+        getFromResource('Orientation_Display_Key'),
+      ],
     },
   },
-};
+} as StoryObj<StoryArgs>;
 

@@ -14,9 +14,9 @@ import {
   WholeNumberPropertyMock,
 } from '@shko.online/componentframework-mock';
 
-import type { IInputs, IOutputs } from '@albanian-xrm/multi-switch/MultiSwitch/generated/ManifestTypes';
+import type { IInputs, IOutputs } from '../../pcf/MultiSwitch/generated/ManifestTypes';
 import type { StoryArgs } from './StoryArgs';
-import { MultiSwitch } from '@albanian-xrm/multi-switch/MultiSwitch/index';
+import { MultiSwitch } from '../../pcf/MultiSwitch';
 
 const renderGenerator = ()=>{
   let container: HTMLDivElement;

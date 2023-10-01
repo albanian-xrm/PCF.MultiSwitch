@@ -1,5 +1,5 @@
-import type { DecoratorFunction } from '@storybook/types';
 import type { HtmlRenderer } from '@storybook/html';
+import type { DecoratorFunction } from '@storybook/types';
 import type { StoryArgs } from './StoryArgs';
 
 export const Decorator: DecoratorFunction<HtmlRenderer, StoryArgs> = (Story) => {

@@ -3,9 +3,9 @@
     Licensed under the MIT license.
 */
 
-import renderGenerator from 'stories/renderGenerator';
-import { StoryArgs } from '../StoryArgs';
-import { StoryObj } from '@storybook/html';
+import type { StoryObj } from '@storybook/html';
+import type { StoryArgs } from '../StoryArgs';
+import renderGenerator from '../renderGenerator';
 
 export const Disabled: StoryObj<StoryArgs> = {
   render: renderGenerator(),

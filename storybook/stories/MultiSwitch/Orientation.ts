@@ -3,10 +3,10 @@
     Licensed under the MIT license.
 */
 
-import { StoryArgs } from '../StoryArgs';
-import { StoryObj } from '@storybook/html';
+import type { StoryObj } from '@storybook/html';
+import type { StoryArgs } from '../StoryArgs';
 import { getFromResource } from '../getFromResource';
-import renderGenerator from 'stories/renderGenerator';
+import renderGenerator from '../renderGenerator';
 
 export const Orientation: StoryObj<StoryArgs> = {
   render: renderGenerator(),

@@ -3,13 +3,15 @@
     Licensed under the MIT license.
 */
 
-import { Meta } from '@storybook/html';
-import { argTypes } from './argTypes';
-import '@albanian-xrm/multi-switch/MultiSwitch/app.css';
-import { defaultArgs } from './defaultArgs';
-import { StoryArgs } from './StoryArgs';
-import { Decorator } from './Decorator';
+import type { Meta, StoryObj } from '@storybook/html';
+import type { StoryArgs } from './StoryArgs';
+import type { IInputs, IOutputs } from '../../pcf/MultiSwitch/generated/ManifestTypes';
+
 import { useArgs } from '@storybook/client-api';
+import { argTypes } from './argTypes';
+import '../../pcf/MultiSwitch/app.css';
+import { defaultArgs } from './defaultArgs';
+import { Decorator } from './Decorator';
 import {
   ComponentFrameworkMockGenerator,
   EnumPropertyMock,
@@ -20,10 +22,8 @@ import {
   WholeNumberPropertyMock,
 } from '@shko.online/componentframework-mock';
 
-import type { IInputs, IOutputs } from '@albanian-xrm/multi-switch/MultiSwitch/generated/ManifestTypes';
-import type { StoryFn, StoryObj } from '@storybook/html';
-import { MultiSwitch } from '@albanian-xrm/multi-switch/MultiSwitch/index';
 import { getFromResource } from './getFromResource';
+import { MultiSwitch } from '../../pcf/MultiSwitch';
 
 const selectionMetadata: ComponentFramework.PropertyHelper.OptionMetadata[] = [
   { Color: '', Label: 'Mutant', Value: 100001000 },

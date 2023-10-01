@@ -3,17 +3,17 @@
     Licensed under the MIT license.
 */
 
-import { Meta } from '@storybook/html';
+import type { Meta } from '@storybook/html';
+import type { StoryArgs } from './StoryArgs';
+import type { IInputs, IOutputs } from '../../pcf/MultiSwitch/generated/ManifestTypes';
 
-import { StoryArgs } from './StoryArgs';
-import '@albanian-xrm/multi-switch/MultiSwitch/app.css';
+import '../../pcf/MultiSwitch/app.css';
 import { defaultArgs } from './defaultArgs';
 import { argTypes } from './argTypes';
 import { Decorator } from './Decorator';
 import {
   ComponentFrameworkMockGenerator,
 } from '@shko.online/componentframework-mock';
-import { IInputs, IOutputs } from '@albanian-xrm/multi-switch/MultiSwitch/generated/ManifestTypes';
 
 export default {
   title: "AlbanianXrm's MultiSwitch/Checkboxes",

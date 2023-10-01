@@ -3,9 +3,9 @@
     Licensed under the MIT license.
 */
 
-import { ArgTypes } from '@storybook/html';
+import type { ArgTypes } from '@storybook/html';
+import type { StoryArgs } from './StoryArgs';
 import { getFromResource } from './getFromResource';
-import { StoryArgs } from './StoryArgs';
 
 export const argTypes: Partial<ArgTypes<StoryArgs>> = {
   isDisabled: {

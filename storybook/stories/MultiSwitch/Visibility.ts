@@ -3,9 +3,9 @@
     Licensed under the MIT license.
 */
 
+import type { StoryObj } from '@storybook/html';
+import type { StoryArgs } from '../StoryArgs';
 import renderGenerator from '../renderGenerator';
-import { StoryArgs } from '../StoryArgs';
-import { StoryObj } from '@storybook/html';
 
 export const Visibility: StoryObj<StoryArgs> = {
   render: renderGenerator(),

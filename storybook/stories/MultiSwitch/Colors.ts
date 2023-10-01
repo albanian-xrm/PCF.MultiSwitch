@@ -3,10 +3,10 @@
     Licensed under the MIT license.
 */
 
-import { StoryObj } from '@storybook/html';
-import { StoryArgs } from '../StoryArgs';
+import type { StoryObj } from '@storybook/html';
+import type { StoryArgs } from '../StoryArgs';
 import { getFromResource } from '../getFromResource';
-import renderGenerator from 'stories/renderGenerator';
+import renderGenerator from '../renderGenerator';
 
 export const Colors: StoryObj<StoryArgs> = {
   render: renderGenerator(),

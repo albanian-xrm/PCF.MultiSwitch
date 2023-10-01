@@ -3,12 +3,12 @@
     Licensed under the MIT license.
 */
 
-import { StoryArgs } from '../StoryArgs';
+import type { StoryObj } from '@storybook/html';
+import type { StoryArgs } from '../StoryArgs';
 import { userEvent, waitFor, within } from '@storybook/testing-library';
 import delay, { timeout } from '../delay';
-import { StoryObj } from '@storybook/html';
 import { getFromResource } from '../getFromResource';
-import renderGenerator from 'stories/renderGenerator';
+import renderGenerator from '../renderGenerator';
 
 export const Interaction: StoryObj<StoryArgs> = {
   render: renderGenerator(),
@@ -31,3 +31,4 @@ export const Interaction: StoryObj<StoryArgs> = {
     }
   },
 };
+
