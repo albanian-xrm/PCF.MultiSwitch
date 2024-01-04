@@ -3,7 +3,7 @@
     Licensed under the MIT license.
 */
 
-import { useArgs } from '@storybook/client-api';
+import { useArgs, useEffect } from '@storybook/client-api';
 import {
   ComponentFrameworkMockGenerator,
   EnumPropertyMock,
@@ -19,11 +19,15 @@ import type { StoryArgs } from './StoryArgs';
 import { MultiSwitch } from '../../pcf/MultiSwitch';
 
 const renderGenerator = ()=>{
-  let container: HTMLDivElement;
+  let container: HTMLDivElement | null;
   let mockGenerator: ComponentFrameworkMockGenerator<IInputs, IOutputs>;
 
   return function () {
     const [args, updateArgs] = useArgs<StoryArgs>();
+    useEffect(()=> ()=> {
+      container = null;
+      mockGenerator?.control.destroy();
+    },[]);
     if (!container) {
       container = document.createElement('div');
       mockGenerator = new ComponentFrameworkMockGenerator(

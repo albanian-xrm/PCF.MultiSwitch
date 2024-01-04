@@ -12,12 +12,12 @@ export const Colors: StoryObj<StoryArgs> = {
   render: renderGenerator(),
   args: {
     useColorForLabel: 'No',
-    pillColorOn: undefined,
-    thumbColorOn: undefined,
-    pillColorHoverOn: undefined,
-    pillColorOff: undefined,
-    thumbColorOff: undefined,
-    thumbColorHoverOff: undefined,
+    pillColorOn: '#d72626',
+    thumbColorOn: '#3b1a1a',
+    pillColorHoverOn: '#c93535',
+    pillColorOff: '#d35e5e',
+    thumbColorOff: '#b01414',
+    thumbColorHoverOff: '#fdfdfd',
   },
   parameters: {
     controls: {
