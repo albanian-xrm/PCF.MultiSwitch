@@ -1,4 +1,4 @@
-# AlbanianXrm's MultiSwitch PCF Component
+# AlbanianXrm's MultiSwitch PCF Component ![GitHub all Downloads](https://img.shields.io/github/downloads/albanian-xrm/PCF.MultiSwitch/total?style=plastic)
 
 To use the component follow these steps:
 1. Import the managed solution into your environment
