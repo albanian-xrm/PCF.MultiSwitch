@@ -7,11 +7,11 @@ node_modules
 **/generated
 
 # output directory
-pcf/out
+out
 
 # msbuild output directories
-pcf/bin
-pcf/obj
+bin
+obj
 
 # storybook 
-storybook/storybook-static
+storybook-static

@@ -1,2 +1,0 @@
-E:\repos\AlbanianXrm\PCF.MultiSwitch\MultiSwitch\obj\Release\MultiSwitch.pcfproj.AssemblyReference.cache
-E:\repos\AlbanianXrm\PCF.MultiSwitch\MultiSwitch\obj\Release\MultiSwitch.pcfproj.CoreCompileInputs.cache
