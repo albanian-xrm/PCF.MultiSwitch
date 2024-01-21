@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<manifest>
+  <control constructor="MultiSwitch" control-type="standard" description-key="Control_Description_Key" display-name-key="Control_Display_Name_Key" namespace="AlbanianXrm" preview-image="img/preview-image.png" version="1.0.11" api-version="1.3.11">
+    <external-service-usage enabled="false"/>
+    <property name="selection" display-name-key="Property_Display_Key" description-key="Property_Desc_Key" of-type="MultiSelectOptionSet" usage="bound" required="true"/>
+    <property name="height" display-name-key="Height_Display_Key" description-key="Height_Desc_Key" of-type="Whole.None" usage="input" required="false"/>
+    <property name="columns" display-name-key="Columns_Display_Key" description-key="Columns_Desc_Key" of-type="Whole.None" usage="input" required="false"/>
+    <property name="controlType" display-name-key="ControlType_Display_Key" description-key="ControlType_Desc_Key" of-type="Enum" usage="input" default-value="0" required="false">
+      <value name="Switches" display-name-key="Switches">0</value>
+      <value name="Checkboxes" display-name-key="Checkboxes">1</value>
+    </property>
+    <property name="orientation" display-name-key="Orientation_Display_Key" description-key="Orientation_Desc_Key" of-type="Enum" usage="input" default-value="0" required="false">
+      <value name="Vertical" display-name-key="Vertical">0</value>
+      <value name="Horizontal" display-name-key="Horizontal">1</value>
+    </property>
+    <property name="pillColorOn" display-name-key="PillColorOn_Display_Key" description-key="PillColorOn_Desc_Key" of-type="SingleLine.Text" usage="input" required="false"/>
+    <property name="thumbColorOn" display-name-key="ThumbColorOn_Display_Key" description-key="ThumbColorOn_Desc_Key" of-type="SingleLine.Text" usage="input" required="false"/>
+    <property name="pillColorHoverOn" display-name-key="PillColorHoverOn_Display_Key" description-key="PillColorHoverOn_Desc_Key" of-type="SingleLine.Text" usage="input" required="false"/>
+    <property name="pillColorOff" display-name-key="PillColorOff_Display_Key" description-key="PillColorOff_Desc_Key" of-type="SingleLine.Text" usage="input" required="false"/>
+    <property name="thumbColorOff" display-name-key="ThumbColorOff_Display_Key" description-key="ThumbColorOff_Desc_Key" of-type="SingleLine.Text" usage="input" required="false"/>
+    <property name="thumbColorHoverOff" display-name-key="ThumbColorHoverOff_Display_Key" description-key="ThumbColorHoverOff_Desc_Key" of-type="SingleLine.Text" usage="input" required="false"/>
+    <property name="useColorForLabel" display-name-key="UseColorForLabel_Display_Key" description-key="UseColorForLabel_Desc_Key" of-type="Enum" usage="input" default-value="No" required="false">
+      <value name="Yes" display-name-key="Yes">Yes</value>
+      <value name="No" display-name-key="No">No</value>
+    </property>
+    <property name="staticChoices" display-name-key="StaticChoices_Display_Key" description-key="StaticChoices_Desc_Key" of-type="SingleLine.Text" usage="input" required="false"/>
+    <property name="banishedChoices" display-name-key="BanishedChoices_Display_Key" description-key="BanishedChoices_Desc_Key" of-type="SingleLine.Text" usage="input" required="false"/>
+    <property name="relatedChoices" display-name-key="RelatedChoices_Display_Key" description-key="RelatedChoices_Desc_Key" of-type="MultiSelectOptionSet" usage="input" required="false"/>
+    <property name="groupSize" display-name-key="GroupSize_Display_Key" description-key="GroupSize_Desc_Key" of-type="Whole.None" usage="input" required="false"/>
+    <resources>
+      <code order="1" path="bundle.js"/>
+      <resx path="strings/MultiSwitch.1033.resx" version="1.0.1"/>
+      <css path="app.css"/>
+    </resources>
+    <built-by name="pac" version="1.29.9"/>
+  </control>
+</manifest>

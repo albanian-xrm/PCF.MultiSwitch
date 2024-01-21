@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <xsd:schema id="root"
+        xmlns=""
+        xmlns:xsd="https://www.w3.org/2001/XMLSchema"
+        xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:import namespace="https://www.w3.org/XML/1998/namespace" />
+        <xsd:element name="root" msdata:IsDataSet="true">
+            <xsd:complexType>
+                <xsd:choice maxOccurs="unbounded">
+                    <xsd:element name="metadata">
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+                            </xsd:sequence>
+                            <xsd:attribute name="name" use="required" type="xsd:string" />
+                            <xsd:attribute name="type" type="xsd:string" />
+                            <xsd:attribute name="mimetype" type="xsd:string" />
+                            <xsd:attribute ref="xml:space" />
+                        </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="assembly">
+                        <xsd:complexType>
+                            <xsd:attribute name="alias" type="xsd:string" />
+                            <xsd:attribute name="name" type="xsd:string" />
+                        </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="data">
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+                            </xsd:sequence>
+                            <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+                            <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+                            <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+                            <xsd:attribute ref="xml:space" />
+                        </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="resheader">
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                            </xsd:sequence>
+                            <xsd:attribute name="name" type="xsd:string" use="required" />
+                        </xsd:complexType>
+                    </xsd:element>
+                </xsd:choice>
+            </xsd:complexType>
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>2.0</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="StaticChoices_Display_Key" xml:space="preserve">
+        <value>Static Choices</value>
+    </data>
+    <data name="StaticChoices_Desc_Key" xml:space="preserve">
+        <value>Comma separated list of choices. If specified the control will only show these from the list</value>
+    </data>
+    <data name="BanishedChoices_Display_Key" xml:space="preserve">
+        <value>Banished Choices</value>
+    </data>
+    <data name="BanishedChoices_Desc_Key" xml:space="preserve">
+        <value>Comma separated list of choices to exclude from the list</value>
+    </data>
+    <data name="Control_Display_Name_Key" xml:space="preserve">
+        <value>AlbanianXrm's MultiSwitch</value>
+    </data>
+    <data name="Control_Description_Key" xml:space="preserve">
+        <value>Display Choices as a list of Switches</value>
+    </data>
+    <data name="GroupSize_Display_Key" xml:space="preserve">
+        <value>Group Size</value>
+    </data>
+    <data name="GroupSize_Desc_Key" xml:space="preserve">
+        <value>Used in combination with Related Choices can be used to filter only choices that match the prefix of the selected parent choices</value>
+    </data>
+    <data name="Property_Display_Key" xml:space="preserve">
+        <value>Multiple Options</value>
+    </data>
+    <data name="Property_Desc_Key" xml:space="preserve">
+        <value>The Multiple Options Field</value>
+    </data>
+    <data name="Height_Display_Key" xml:space="preserve">
+        <value>Fixed Height</value>
+    </data>
+    <data name="Height_Desc_Key" xml:space="preserve">
+        <value>Input value of the container's Height</value>
+    </data>
+    <data name="Columns_Display_Key" xml:space="preserve">
+        <value>Columns</value>
+    </data>
+    <data name="Columns_Desc_Key" xml:space="preserve">
+        <value>Input value of the number of columns</value>
+    </data>
+    <data name="Orientation_Display_Key" xml:space="preserve">
+        <value>Orientation</value>
+    </data>
+    <data name="Orientation_Desc_Key" xml:space="preserve">
+        <value>Specifies if choices will be positioned vertically or horizontally</value>
+    </data>
+    <data name="ControlType_Display_Key" xml:space="preserve">
+        <value>Control Type</value>
+    </data>
+    <data name="ControlType_Desc_Key" xml:space="preserve">
+        <value>Render Checkboxes or Switches</value>
+    </data>
+    <data name="Checkboxes" xml:space="preserve">
+        <value>Checkboxes</value>
+    </data>
+    <data name="Switches" xml:space="preserve">
+        <value>Switches</value>
+    </data>
+    <data name="PillColorOn_Display_Key" xml:space="preserve">
+        <value>Pill Color On</value>
+    </data>
+    <data name="PillColorOn_Desc_Key" xml:space="preserve">
+        <value>Pill Color when the switch is On</value>
+    </data>
+    <data name="RelatedChoices_Display_Key" xml:space="preserve">
+        <value>Related Choices</value>
+    </data>
+    <data name="RelatedChoices_Desc_Key" xml:space="preserve">
+        <value>This multiple selection field can be used to filter only choices that match the prefix of the selected parent choices</value>
+    </data>
+    <data name="ThumbColorOn_Display_Key" xml:space="preserve">
+        <value>Thumb Color On</value>
+    </data>
+    <data name="ThumbColorOn_Desc_Key" xml:space="preserve">
+        <value>Thumb Color when the switch is On</value>
+    </data>
+    <data name="PillColorHoverOn_Display_Key" xml:space="preserve">
+        <value>Pill Color Hover On</value>
+    </data>
+    <data name="PillColorHoverOn_Desc_Key" xml:space="preserve">
+        <value>Pill Color when hovering a switch that is On</value>
+    </data>
+    <data name="PillColorOff_Display_Key" xml:space="preserve">
+        <value>Pill Color Off</value>
+    </data>
+    <data name="PillColorOff_Desc_Key" xml:space="preserve">
+        <value>Pill Color when the switch is Off</value>
+    </data>
+    <data name="ThumbColorOff_Display_Key" xml:space="preserve">
+        <value>Thumb Color Off</value>
+    </data>
+    <data name="ThumbColorOff_Desc_Key" xml:space="preserve">
+        <value>Thumb Color when the switch is Off</value>
+    </data>
+    <data name="ThumbColorHoverOff_Display_Key" xml:space="preserve">
+        <value>Thumb Color Hover Off</value>
+    </data>
+    <data name="ThumbColorHoverOff_Desc_Key" xml:space="preserve">
+        <value>Thumb Color when hovering a switch that is Off</value>
+    </data>
+    <data name="UseColorForLabel_Display_Key" xml:space="preserve">
+        <value>Use Color for Label</value>
+    </data>
+    <data name="UseColorForLabel_Desc_Key" xml:space="preserve">
+        <value>Use the color configured in the choice as the label color</value>
+    </data>
+    <data name="Yes" xml:space="preserve">
+        <value>Yes</value>
+    </data>
+    <data name="No" xml:space="preserve">
+        <value>No</value>
+    </data>
+</root>
