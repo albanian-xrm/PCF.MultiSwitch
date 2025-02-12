@@ -13,7 +13,7 @@ import '../MultiSwitch/app.css';
 import { defaultArgs } from './defaultArgs';
 import { Decorator } from './Decorator';
 import {
-  ComponentFrameworkMockGenerator,
+  ComponentFrameworkMockOrchestrator,
   EnumPropertyMock,
   MetadataDB,
   MultiSelectOptionSetPropertyMock,
@@ -125,48 +125,93 @@ export default {
 
 const renderGenerator = () => {
   let container: HTMLDivElement | null;
-  let mockGenerator: ComponentFrameworkMockGenerator<IInputs, IOutputs>;
+  let orchestrator: ComponentFrameworkMockOrchestrator<[IInputs, IOutputs, false, IInputs, IOutputs, false]>;
 
   return function () {
     useEffect(
       () => () => {
         container = null;
-        mockGenerator?.control.destroy();
+        orchestrator.mockGenerators.forEach((mockGenerator) => mockGenerator.control.destroy());
       },
       [],
     );
     const [args, updateArgs] = useArgs<StoryArgs>();
     if (!container) {
       container = document.createElement('div');
-      mockGenerator = new ComponentFrameworkMockGenerator(
-        MultiSwitch,
-        {
-          selection: MultiSelectOptionSetPropertyMock,
-          columns: WholeNumberPropertyMock,
-          controlType: EnumPropertyMock,
-          height: WholeNumberPropertyMock,
-          orientation: EnumPropertyMock,
-          pillColorHoverOn: StringPropertyMock,
-          pillColorOff: StringPropertyMock,
-          pillColorOn: StringPropertyMock,
-          thumbColorHoverOff: StringPropertyMock,
-          thumbColorOff: StringPropertyMock,
-          thumbColorOn: StringPropertyMock,
-          useColorForLabel: EnumPropertyMock,
-          staticChoices: StringPropertyMock,
-          banishedChoices: StringPropertyMock,
-          groupSize: WholeNumberPropertyMock,
-          relatedChoices: MultiSelectOptionSetPropertyMock,
-        },
-        container,
-      );
+      container = document.createElement('div');
 
-      const relatedChoicesMetadata = mockGenerator.metadata.getAttributeMetadata(
+      const container1 = document.createElement('div');
+      container1.style.maxWidth = '350px';
+      container1.style.border = 'dotted 1px';
+      container.appendChild(container1);
+      const container2 = document.createElement('div');
+      container.appendChild(container2);
+
+      orchestrator = new ComponentFrameworkMockOrchestrator([
+        [
+          MultiSwitch,
+          {
+            selection: MultiSelectOptionSetPropertyMock,
+            columns: WholeNumberPropertyMock,
+            controlType: EnumPropertyMock,
+            height: WholeNumberPropertyMock,
+            orientation: EnumPropertyMock,
+            pillColorHoverOn: StringPropertyMock,
+            pillColorOff: StringPropertyMock,
+            pillColorOn: StringPropertyMock,
+            thumbColorHoverOff: StringPropertyMock,
+            thumbColorOff: StringPropertyMock,
+            thumbColorOn: StringPropertyMock,
+            useColorForLabel: EnumPropertyMock,
+            staticChoices: StringPropertyMock,
+            banishedChoices: StringPropertyMock,
+            groupSize: WholeNumberPropertyMock,
+            relatedChoices: MultiSelectOptionSetPropertyMock,
+          },
+          container1,
+        ],
+        [
+          MultiSwitch,
+          {
+            selection: MultiSelectOptionSetPropertyMock,
+            columns: WholeNumberPropertyMock,
+            controlType: EnumPropertyMock,
+            height: WholeNumberPropertyMock,
+            orientation: EnumPropertyMock,
+            pillColorHoverOn: StringPropertyMock,
+            pillColorOff: StringPropertyMock,
+            pillColorOn: StringPropertyMock,
+            thumbColorHoverOff: StringPropertyMock,
+            thumbColorOff: StringPropertyMock,
+            thumbColorOn: StringPropertyMock,
+            useColorForLabel: EnumPropertyMock,
+            staticChoices: StringPropertyMock,
+            banishedChoices: StringPropertyMock,
+            groupSize: WholeNumberPropertyMock,
+            relatedChoices: MultiSelectOptionSetPropertyMock,
+          },
+          container2,
+        ],
+      ]);
+
+      const relatedChoicesMetadata = orchestrator.db.getAttributeMetadata(
         MetadataDB.CanvasLogicalName,
         'relatedChoices',
       ) as ShkoOnline.PickListAttributeMetadata;
 
-      const selectionMetadata = mockGenerator.metadata.getAttributeMetadata(
+      const relatedChoicesMetadata2 = orchestrator.db.getAttributeMetadata(
+        MetadataDB.CanvasLogicalName,
+        'relatedChoices',
+      ) as ShkoOnline.PickListAttributeMetadata;
+
+      relatedChoicesMetadata2.LogicalName = 'relatedChoices2';
+      relatedChoicesMetadata2.SchemaName = 'relatedChoices2';
+      relatedChoicesMetadata2.MetadataId = '';
+      relatedChoicesMetadata2.OptionSet.MetadataId = '';
+
+      orchestrator.db.upsertAttributeMetadata(MetadataDB.CanvasLogicalName, relatedChoicesMetadata2);
+
+      const selectionMetadata = orchestrator.db.getAttributeMetadata(
         MetadataDB.CanvasLogicalName,
         'selection',
       ) as ShkoOnline.PickListAttributeMetadata;
@@ -175,18 +220,31 @@ const renderGenerator = () => {
         relatedChoicesMetadata.OptionSet.Options[option.Value] = option;
       });
 
-      mockGenerator.metadata.upsertAttributeMetadata(MetadataDB.CanvasLogicalName, relatedChoicesMetadata);
+      orchestrator.db.upsertAttributeMetadata(MetadataDB.CanvasLogicalName, relatedChoicesMetadata);
 
       args.selectionMetadata.forEach((option: { Value: number; Label: string; Color?: string | undefined }) => {
         selectionMetadata.OptionSet.Options[option.Value] = option;
       });
 
-      mockGenerator.metadata.upsertAttributeMetadata(MetadataDB.CanvasLogicalName, selectionMetadata);
+      orchestrator.db.upsertAttributeMetadata(MetadataDB.CanvasLogicalName, selectionMetadata);
 
-      mockGenerator.context.mode.isControlDisabled = args.isDisabled;
-      mockGenerator.context.mode.isVisible = args.isVisible;
-      mockGenerator.context._SetCanvasItems({
-        selection: args.selection || undefined,
+      orchestrator.mockGenerators[0].context._parameters.relatedChoices._Bind(
+        MetadataDB.CanvasLogicalName,
+        'relatedChoices2',
+      );
+
+      orchestrator.mockGenerators[0].context._parameters.selection._Bind(
+        MetadataDB.CanvasLogicalName,
+        'relatedChoices',
+      );
+
+      orchestrator.mockGenerators[0].context.mode.isControlDisabled = args.isDisabled;
+      orchestrator.mockGenerators[0].context.mode.isVisible = args.isVisible;
+      orchestrator.mockGenerators[1].context.mode.isControlDisabled = args.isDisabled;
+      orchestrator.mockGenerators[1].context.mode.isVisible = args.isVisible;
+
+      orchestrator.mockGenerators[0].context._SetCanvasItems({
+        selection: args.relatedChoices || undefined,
         height: args.height,
         columns: args.columns,
         controlType: args.controlType,
@@ -198,40 +256,45 @@ const renderGenerator = () => {
         thumbColorOff: args.thumbColorOff || undefined,
         thumbColorHoverOff: args.thumbColorHoverOff || undefined,
         useColorForLabel: args.useColorForLabel || undefined,
-        banishedChoices: args.banishedChoices,
-        staticChoices: args.staticChoices,
-        groupSize: args.groupSize,
-        relatedChoices: args.relatedChoices,
+        banishedChoices: '',
+        groupSize: 1,
+        relatedChoices: undefined,
       });
 
-      mockGenerator.onOutputChanged.callsFake(({ selection }) => {
+      orchestrator.mockGenerators[0].onOutputChanged.callsFake(({ selection }) => {
+        updateArgs({ relatedChoices: selection });
+      });
+
+      orchestrator.mockGenerators[1].onOutputChanged.callsFake(({ selection }) => {
         updateArgs({ selection });
       });
 
-      mockGenerator.ExecuteInit();
+      orchestrator.mockGenerators[0].ExecuteInit();
+      orchestrator.mockGenerators[1].ExecuteInit();
     }
 
-    if (mockGenerator) {
-      mockGenerator.context.mode.isVisible = args.isVisible;
-      mockGenerator.context.mode.isControlDisabled = args.isDisabled;
-      mockGenerator.context._parameters.columns._SetValue(args.columns);
-      mockGenerator.context._parameters.controlType._SetValue(args.controlType);
-      mockGenerator.context._parameters.height._SetValue(args.height);
-      mockGenerator.context._parameters.orientation._SetValue(args.orientation);
-      mockGenerator.context._parameters.pillColorHoverOn._SetValue(args.pillColorHoverOn);
-      mockGenerator.context._parameters.pillColorOff._SetValue(args.pillColorOff);
-      mockGenerator.context._parameters.pillColorOn._SetValue(args.pillColorOn);
-      mockGenerator.context._parameters.selection._SetValue(args.selection);
-      mockGenerator.context._parameters.thumbColorHoverOff._SetValue(args.thumbColorHoverOff);
-      mockGenerator.context._parameters.thumbColorOff._SetValue(args.thumbColorOff);
-      mockGenerator.context._parameters.thumbColorOn._SetValue(args.thumbColorOn);
-      mockGenerator.context._parameters.useColorForLabel._SetValue(args.useColorForLabel);
-      mockGenerator.context._parameters.staticChoices._SetValue(args.staticChoices);
-      mockGenerator.context._parameters.banishedChoices._SetValue(args.banishedChoices);
-      mockGenerator.context._parameters.groupSize._SetValue(args.groupSize);
-      mockGenerator.context._parameters.relatedChoices._SetValue(args.relatedChoices);
+    if (orchestrator) {
+      orchestrator.mockGenerators[1].context.mode.isVisible = args.isVisible;
+      orchestrator.mockGenerators[1].context.mode.isControlDisabled = args.isDisabled;
+      orchestrator.mockGenerators[1].context._parameters.columns._SetValue(args.columns);
+      orchestrator.mockGenerators[1].context._parameters.controlType._SetValue(args.controlType);
+      orchestrator.mockGenerators[1].context._parameters.height._SetValue(args.height);
+      orchestrator.mockGenerators[1].context._parameters.orientation._SetValue(args.orientation);
+      orchestrator.mockGenerators[1].context._parameters.pillColorHoverOn._SetValue(args.pillColorHoverOn);
+      orchestrator.mockGenerators[1].context._parameters.pillColorOff._SetValue(args.pillColorOff);
+      orchestrator.mockGenerators[1].context._parameters.pillColorOn._SetValue(args.pillColorOn);
+      orchestrator.mockGenerators[1].context._parameters.selection._SetValue(args.selection);
+      orchestrator.mockGenerators[1].context._parameters.thumbColorHoverOff._SetValue(args.thumbColorHoverOff);
+      orchestrator.mockGenerators[1].context._parameters.thumbColorOff._SetValue(args.thumbColorOff);
+      orchestrator.mockGenerators[1].context._parameters.thumbColorOn._SetValue(args.thumbColorOn);
+      orchestrator.mockGenerators[1].context._parameters.useColorForLabel._SetValue(args.useColorForLabel);
+      orchestrator.mockGenerators[1].context._parameters.staticChoices._SetValue(args.staticChoices);
+      orchestrator.mockGenerators[1].context._parameters.banishedChoices._SetValue(args.banishedChoices);
+      orchestrator.mockGenerators[1].context._parameters.groupSize._SetValue(args.groupSize);
+      orchestrator.mockGenerators[1].context._parameters.relatedChoices._SetValue(args.relatedChoices);
 
-      mockGenerator.ExecuteUpdateView();
+      orchestrator.mockGenerators[0].ExecuteUpdateView();
+      orchestrator.mockGenerators[1].ExecuteUpdateView();
     }
 
     return container;

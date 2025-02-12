@@ -121,6 +121,7 @@ export class MultiSwitch implements ComponentFramework.StandardControl<IInputs, 
           (banishedChoices === undefined || banishedChoices.indexOf(option.Value) === -1) &&
           (groupSize === undefined ||
             relatedChoices === undefined ||
+            relatedChoices?.length === 0 ||
             relatedChoices.some(
               (related) =>
                 Math.floor(option.Value / Math.pow(10, groupSize)) === Math.floor(related / Math.pow(10, groupSize)),
@@ -160,6 +161,7 @@ export class MultiSwitch implements ComponentFramework.StandardControl<IInputs, 
         (option) =>
           groupSize === undefined ||
           relatedChoices === undefined ||
+          relatedChoices?.length === 0 ||
           (banishedChoices !== undefined && banishedChoices.indexOf(option.Value) > -1) ||
           relatedChoices.some(
             (related) =>

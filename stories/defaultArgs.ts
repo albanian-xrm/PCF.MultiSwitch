@@ -20,6 +20,7 @@ import {
 } from './MultiSwitch/Constants';
 
 export const defaultArgs: Partial<StoryArgs> = {
+  selection: [],
   isVisible: true,
   isDisabled: false,
   height: 0,
@@ -46,5 +47,4 @@ export const defaultArgs: Partial<StoryArgs> = {
     { Value: 10, Label: TENTH_OPTION, Color: '#dddddd' },
     { Value: 11, Label: ELEVENTH_OPTION, Color: '#dddddd' },
   ],
-  selection: [],
 };
